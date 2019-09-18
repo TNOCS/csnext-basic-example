@@ -1,0 +1,32 @@
+{
+  "name": "cs-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "start": "yarn serve",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@csnext/cs-client": "0.0.121",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@types/socket.io-client": "^1.4.32",
+    "vue-template-compiler": "^2.6.10",
+    "vue-class-component": "^6.0.0",
+    "vue-property-decorator": "^7.0.0",
+    "@vue/cli-plugin-babel": "^3.0.4",
+    "@vue/cli-plugin-typescript": "^3.0.4",
+    "@vue/cli-service": "^3.0.4",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-runtime": "^6.26.0",
+    "typescript": "^3.5.3"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
