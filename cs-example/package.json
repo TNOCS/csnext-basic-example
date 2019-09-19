@@ -6,9 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "start": "yarn serve",
-    "lint": "vue-cli-service lint",    
+    "lint": "vue-cli-service lint",
     "test": "",
-    "linkcs": "yarn link @csnext/cs-client && yarn link @csnext/cs-drag-grid"
+    "linkcs": "yarn link @csnext/cs-client && yarn link @csnext/cs-drag-grid && yarn link @csnext/cs-split-panel"
   },
   "dependencies": {
     "@csnext/cs-client": "0.0.121",
@@ -16,15 +16,15 @@
   },
   "devDependencies": {
     "@types/socket.io-client": "^1.4.32",
-    "vue-template-compiler": "^2.6.10",
-    "vue-class-component": "^7.1.0",
-    "vue-property-decorator": "^8.2.2",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-typescript": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-runtime": "^6.26.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.2",
+    "vue-template-compiler": "^2.6.10"
   },
   "browserslist": [
     "> 1%",

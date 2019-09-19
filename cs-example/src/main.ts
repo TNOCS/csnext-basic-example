@@ -1,18 +1,24 @@
 import Vue from "vue";
-import { CsApp, AppState, CsPlugin, MdWidget } from "@csnext/cs-client";
+import { CsApp, AppState, CsPlugin, MdWidget, DashboardManager, LayoutManager } from "@csnext/cs-client";
 import HelloWorld from "./components/HelloWorld.vue";
+import { SplitPanel, SplitPanelOptions } from '@csnext/cs-split-panel';
+import { IDashboardOptions } from '@csnext/cs-core';
+
+// include style definitions used for widgets
+import './assets/styles.css';
 
 Vue.config.productionTip = false;
 
 Vue.use(CsPlugin);
 
-const app = AppState.Instance;
+// register split panel layout manager
+LayoutManager.addLayoutManager(SplitPanel);
 
 new Vue({
   render: h => h(CsApp as any)
 }).$mount("#app");
 
-app.init({
+AppState.Instance.init({
   header: {
     title: "Testing app",
     titleWidget: {
@@ -61,6 +67,63 @@ app.init({
           data: "charts"
         }
       ]
+    },
+    {
+      id: "grid",
+      path: "/splitpanel",
+      title: "split panel",
+      layout: SplitPanel.id,
+      options: {
+        splitpanel: {
+          direction: 'horizontal',
+          elements: [
+            {
+              size: 35,
+              widgetId: 'widget-1'
+            },
+            {
+              size: 65,
+              splitpanel: {
+                direction: 'vertical',
+                elements: [
+                  {
+                    size: 50,
+                    widgetId: 'widget-2'
+                  },
+                  {
+                    size: 50,
+                    widgetId: 'widget-3'
+                  }
+                ]
+
+              }
+              
+            }
+          ]
+        } as SplitPanelOptions
+      } as IDashboardOptions,
+      widgets: [
+        {
+          component: MdWidget,
+          id: 'widget-1',
+          data: 'widget 1',
+          options: {
+            class: 'splitpanel-widget'
+          }
+        },
+        {
+          component: MdWidget,
+          id: 'widget-2',
+          data: 'widget 2'
+        },
+        {
+          component: MdWidget,
+          id: 'widget-3',
+          data: 'widget 3'
+        }
+        // { id: 'risk-details', component: RiskDetails, datasource: 'events' }
+      ]
     }
   ]
 });
+
