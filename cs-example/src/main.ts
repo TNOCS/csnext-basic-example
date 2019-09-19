@@ -2,6 +2,7 @@ import Vue from "vue";
 import { CsApp, AppState, CsPlugin, MdWidget, DashboardManager, LayoutManager } from "@csnext/cs-client";
 import HelloWorld from "./components/HelloWorld.vue";
 import { SplitPanel, SplitPanelOptions } from '@csnext/cs-split-panel';
+import { DragLayout } from '@csnext/cs-drag-grid';
 import { IDashboardOptions } from '@csnext/cs-core';
 
 // include style definitions used for widgets
@@ -11,8 +12,9 @@ Vue.config.productionTip = false;
 
 Vue.use(CsPlugin);
 
-// register split panel layout manager
+// register split panel & drag layout manager
 LayoutManager.addLayoutManager(SplitPanel);
+LayoutManager.addLayoutManager(DragLayout);
 
 new Vue({
   render: h => h(CsApp as any)
@@ -69,7 +71,7 @@ AppState.Instance.init({
       ]
     },
     {
-      id: "grid",
+      id: "splitpanel",
       path: "/splitpanel",
       title: "split panel",
       layout: SplitPanel.id,
@@ -97,7 +99,7 @@ AppState.Instance.init({
                 ]
 
               }
-              
+
             }
           ]
         } as SplitPanelOptions
@@ -108,18 +110,59 @@ AppState.Instance.init({
           id: 'widget-1',
           data: 'widget 1',
           options: {
-            class: 'splitpanel-widget'
+            class: 'splitpanel-widget-red'
           }
         },
         {
           component: MdWidget,
           id: 'widget-2',
-          data: 'widget 2'
+          data: 'widget 2',
+          options: {
+            class: 'splitpanel-widget-orange'
+          }
         },
         {
           component: MdWidget,
           id: 'widget-3',
-          data: 'widget 3'
+          data: 'widget 3',
+          options: {
+            class: 'splitpanel-widget-green'
+          }
+        }
+        // { id: 'risk-details', component: RiskDetails, datasource: 'events' }
+      ]
+    },
+    {
+      id: "draggrid",
+      path: "/drag grid",
+      title: "Drag Grid",
+      layout: DragLayout.id,
+      options: {        
+      } as IDashboardOptions,
+      widgets: [
+        {
+          component: MdWidget,
+          id: 'widget-1',
+          data: 'widget 1',
+          options: {
+            class: 'splitpanel-widget-red'
+          }
+        },
+        {
+          component: MdWidget,
+          id: 'widget-2',
+          data: 'widget 2',
+          options: {
+            class: 'splitpanel-widget-orange'
+          }
+        },
+        {
+          component: MdWidget,
+          id: 'widget-3',
+          data: 'widget 3',
+          options: {
+            class: 'splitpanel-widget-green'
+          }
         }
         // { id: 'risk-details', component: RiskDetails, datasource: 'events' }
       ]

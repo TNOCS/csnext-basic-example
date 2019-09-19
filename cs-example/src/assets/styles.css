@@ -1,3 +1,11 @@
-.splitpanel-widget {
+.splitpanel-widget-red {
     background: red;;
+}
+
+.splitpanel-widget-green {
+    background: green;
+}
+
+.splitpanel-widget-orange {
+    background: orange;
 }
