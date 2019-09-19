@@ -8,10 +8,14 @@
     "start": "yarn serve",
     "lint": "vue-cli-service lint",
     "test": "",
-    "linkcs": "yarn link @csnext/cs-client && yarn link @csnext/cs-drag-grid && yarn link @csnext/cs-split-panel"
+    "linkcs": "yarn link @csnext/cs-client && yarn link @csnext/cs-drag-grid && yarn link @csnext/cs-split-panel && yarn link @csnext/cs-billboard",
+    "update": "yarn && yarn linkcs"
   },
   "dependencies": {
-    "@csnext/cs-client": "0.0.121",
+    "@csnext/cs-client": "0.0.123",
+    "@csnext/cs-drag-grid": "0.0.123",
+    "@csnext/cs-split-panel": "0.0.123",
+    "@csnext/cs-billboard": "0.0.123",
     "vue": "^2.6.10"
   },
   "devDependencies": {

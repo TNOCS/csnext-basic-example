@@ -1,9 +1,9 @@
 import Vue from "vue";
-import { CsApp, AppState, CsPlugin, MdWidget, DashboardManager, LayoutManager } from "@csnext/cs-client";
-import HelloWorld from "./components/HelloWorld.vue";
+import { CsApp, AppState, CsPlugin, MdWidget, DashboardManager, LayoutManager, GridLayout } from "@csnext/cs-client";
 import { SplitPanel, SplitPanelOptions } from '@csnext/cs-split-panel';
-import { DragLayout } from '@csnext/cs-drag-grid';
+import { DragLayout, DragLayoutOptions } from '@csnext/cs-drag-grid';
 import { IDashboardOptions } from '@csnext/cs-core';
+import { Billboard } from '@csnext/cs-billboard';
 
 // include style definitions used for widgets
 import './assets/styles.css';
@@ -13,8 +13,9 @@ Vue.config.productionTip = false;
 Vue.use(CsPlugin);
 
 // register split panel & drag layout manager
-LayoutManager.addLayoutManager(SplitPanel);
 LayoutManager.addLayoutManager(DragLayout);
+LayoutManager.addLayoutManager(SplitPanel);
+
 
 new Vue({
   render: h => h(CsApp as any)
@@ -49,9 +50,9 @@ AppState.Instance.init({
   dashboards: [
     {
       id: "start",
-      path: "/start",
+      path: "/",
       title: "start",
-      layout: "grid",
+      layout: GridLayout.id,
       widgets: [
         {
           component: MdWidget,
@@ -63,10 +64,17 @@ AppState.Instance.init({
       id: "charts",
       path: "/charts",
       title: "charts",
+      layout: GridLayout.id,
       widgets: [
         {
-          component: HelloWorld,
-          data: "charts"
+          component: Billboard,
+          data: {
+            type: "bar",
+            columns: [
+              ["data1", 30, 200, 100, 170, 150, 250],
+              ["data2", 130, 100, 140, 35, 110, 50]
+            ]
+          }
         }
       ]
     },
@@ -110,7 +118,7 @@ AppState.Instance.init({
           id: 'widget-1',
           data: 'widget 1',
           options: {
-            class: 'splitpanel-widget-red'
+            class: 'widget-red'
           }
         },
         {
@@ -118,7 +126,7 @@ AppState.Instance.init({
           id: 'widget-2',
           data: 'widget 2',
           options: {
-            class: 'splitpanel-widget-orange'
+            class: 'widget-orange'
           }
         },
         {
@@ -126,42 +134,35 @@ AppState.Instance.init({
           id: 'widget-3',
           data: 'widget 3',
           options: {
-            class: 'splitpanel-widget-green'
+            class: 'widget-green'
           }
         }
         // { id: 'risk-details', component: RiskDetails, datasource: 'events' }
       ]
     },
     {
-      id: "draggrid",
-      path: "/drag grid",
+      id: "drag",
+      path: "/drag",
       title: "Drag Grid",
       layout: DragLayout.id,
-      options: {        
-      } as IDashboardOptions,
-      widgets: [
+      options: {
+        DragEnabled: false
+      } as DragLayoutOptions,
+      widgets: [        
         {
+          id: 'widget3',
           component: MdWidget,
-          id: 'widget-1',
-          data: 'widget 1',
-          options: {
-            class: 'splitpanel-widget-red'
-          }
-        },
-        {
-          component: MdWidget,
-          id: 'widget-2',
-          data: 'widget 2',
-          options: {
-            class: 'splitpanel-widget-orange'
-          }
-        },
-        {
-          component: MdWidget,
-          id: 'widget-3',
           data: 'widget 3',
           options: {
-            class: 'splitpanel-widget-green'
+            class: 'widget-orange'
+          }
+        },
+        {
+          id: 'widget4',
+          component: MdWidget,
+          data: 'widget 4',
+          options: {
+            class: 'widget-red'
           }
         }
         // { id: 'risk-details', component: RiskDetails, datasource: 'events' }
