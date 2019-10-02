@@ -1,5 +1,5 @@
 .widget-red {
-    background: red;;
+    background: red;
 }
 
 .widget-green {
@@ -9,3 +9,19 @@
 .widget-orange {
     background: orange;
 }
+
+.widget-blue {
+    background: blue;
+}
+
+.widget-yellow {
+    background: yellow;
+}
+
+.run-dashboard {
+    padding: 5px;  
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 19%);
+    grid-template-rows: repeat(auto-fill, 250px);
+    grid-gap: 10px;
+  }
