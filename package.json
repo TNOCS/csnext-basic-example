@@ -8,17 +8,23 @@
     "start": "yarn serve",
     "lint": "vue-cli-service lint",
     "test": "",
-    "linkcs": "yarn link @csnext/cs-client && yarn link @csnext/cs-drag-grid && yarn link @csnext/cs-split-panel && yarn link @csnext/cs-billboard",
+    "linkcs": "yarn link @csnext/cs-client && yarn link @csnext/cs-drag-grid && yarn link @csnext/cs-split-panel && yarn link @csnext/cs-billboard && yarn link @csnext/cs-markdown && yarn link @csnext/cs-form && yarn link @csnext/cs-map && yarn link @csnext/cs-timeline",
     "update": "yarn && yarn linkcs"
   },
   "dependencies": {
-    "@csnext/cs-client": "0.0.123",
-    "@csnext/cs-drag-grid": "0.0.123",
-    "@csnext/cs-split-panel": "0.0.123",
-    "@csnext/cs-billboard": "0.0.123",
-    "vue": "^2.6.10"
+    "@csnext/cs-client": "0.0.124",
+    "@csnext/cs-drag-grid": "0.0.124",
+    "@csnext/cs-split-panel": "0.0.124",
+    "@csnext/cs-billboard": "0.0.124",
+    "@csnext/cs-map": "0.0.124",
+    "@csnext/cs-timeline": "0.0.124",
+    "@csnext/cs-form": "0.0.124",
+    "vue": "^2.6.10",
+    "geojson": "^0.5.0",
+    "mapbox-gl": "^1.4.0",
+    "vis-timeline": "visjs/vis-timeline"
   },
-  "devDependencies": {
+  "devDependencies": {    
     "@types/socket.io-client": "^1.4.32",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-typescript": "^3.11.0",
@@ -28,7 +34,13 @@
     "typescript": "^3.6.3",
     "vue-class-component": "^7.1.0",
     "vue-property-decorator": "^8.2.2",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "markdown-loader": "~5.1.0",
+    "html-loader": "^0.5.5",
+    "vue-markdown": "2.2.4",
+    "@types/mapbox-gl": "0.54.3",
+    "@types/hammerjs": "2.0.36",
+    "@mapbox/mapbox-gl-draw": "1.1.2"
   },
   "browserslist": [
     "> 1%",
