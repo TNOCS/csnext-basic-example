@@ -19,6 +19,7 @@
     "@csnext/cs-map": "0.0.124",
     "@csnext/cs-timeline": "0.0.124",
     "@csnext/cs-form": "0.0.124",
+    "@csnext/cs-markdown": "0.0.124",
     "vue": "^2.6.10",
     "geojson": "^0.5.0",
     "mapbox-gl": "^1.4.0",
