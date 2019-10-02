@@ -1,12 +1,17 @@
 module.exports = {
   runtimeCompiler: true,
+  productionSourceMap: false,
   configureWebpack: {
-    devtool: "source-map",
+    devtool: 'source-map',
     resolve: {
       symlinks: false,
       alias: {
-        "@": "src/"
+        '@': 'src/',
+        Vue: 'vue/dist/vue.esm.js'
       }
     },
+    module: {
+      
+    }
   }
 };
