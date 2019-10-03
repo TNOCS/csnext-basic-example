@@ -1,17 +1,92 @@
 import { Billboard } from '@csnext/cs-billboard';
 import { CsMarkdown } from '@csnext/cs-markdown';
-import { GridLayout, MdWidgetOptions, CssGrid, MdWidget } from "@csnext/cs-client";
-import { CssGridDashboardOptions, IMenu } from '@csnext/cs-core';
+import { GridLayout, MdWidgetOptions, CssGrid, MdWidget, AppState } from "@csnext/cs-client";
+import { CssGridDashboardOptions, IMenu, IWidget } from '@csnext/cs-core';
 import { CsMap, MapOptions } from '@csnext/cs-map';
 import { CsTimeline, TimelineWidgetOptions } from '@csnext/cs-timeline';
 import { MapboxOptions } from 'mapbox-gl';
+import WidgetPlayground from './../components/widget-playground.vue';
+import WidgetToolbarPlayground from './../components/widget-toolbar-playground.vue';
+
+
+const widget_menus = [
+    {
+        visible: true,
+        icon: 'message',
+        toolTip: 'Trigger notification',
+        action: (m) => {
+            AppState.Instance.TriggerNotification({ title: 'clicked' });
+        }
+    },
+    {
+        visible: true,
+        icon: 'invert_colors',
+        toolTip: 'Toggle dark/light mode',
+        action: (m) => {
+
+            AppState.Instance.project.theme!.dark = !AppState.Instance.project.theme!.dark;
+        }
+    },
+    {
+        visible: true,
+        icon: 'filter_list',
+        toolTip: 'Toggle dark/light mode',
+        items: [
+            {
+                icon: 'delete',
+                title: 'delete',
+                action: (m) => {
+                    AppState.Instance.TriggerQuestionDialog('Delete', 'are you sure', ['yes', 'no']).then(s => {
+                        AppState.Instance.TriggerNotification({ title: `Answer : ${s}` });
+                    })
+                }
+            },
+
+        ]
+    }
+] as IMenu[]
 
 export const widgets = {
     title: "Widgets",
     icon: "widgets",
     dashboards: [
         {
-            path: "/markdown",
+            path: "/widgets/playground",
+            title: "Playground",
+            options: {
+                class: 'widget-playground-dashboard'
+            } as CssGridDashboardOptions,
+            layout: CssGrid.id,
+            widgets: [
+                {
+                    component: WidgetPlayground,
+                    options: {
+                        title: 'Widget Options',
+                        showToolbar: false,
+                        menus: widget_menus
+                    }
+                } as IWidget,
+                {
+                    component: WidgetToolbarPlayground,
+                    options: {
+                        icon: 'assessment',
+                        title: 'Widget Toolbar Options',
+                        showToolbar: true,
+                        menus: widget_menus,
+                        toolbarOptions: {
+                            backgroundColor: 'primary',
+                            flat: true,
+                            hideTitle: false,
+                            hideIcon: false,
+                            elevation: 0,
+                            dense: true,
+                        }
+                    }
+                } as IWidget
+            ]
+        },
+        {
+            path: "/widgets/markdown",
             title: "Mark Down",
             layout: GridLayout.id,
             widgets: [
@@ -123,7 +198,7 @@ console.log(foo(5));
         },
         {
             id: "billboardjs",
-            path: "/billboardjs",
+            path: "/widgets/billboardjs",
             title: "Billboard JS",
             defaultWidgetOptions: {
                 elevation: 5,
@@ -134,7 +209,7 @@ console.log(foo(5));
                 }
             },
             options: {
-                class: 'run-dashboard'
+                class: 'billboard-dashboard'
             } as CssGridDashboardOptions,
             layout: CssGrid.id,
             widgets: [{
@@ -252,14 +327,14 @@ console.log(foo(5));
         },
         {
 
-            path: '/dashboard/map',
+            path: '/widgets/map',
             layout: 'split-panel',
             datasource: 'project',
             title: 'Map & Timeline',
             icon: 'dashboard',
-            manager: 'operation-dashboard',            
+            manager: 'operation-dashboard',
             defaultWidgetOptions: {
-                widgetBorder: 'widget-border-shadow'                
+                widgetBorder: 'widget-border-shadow'
             },
             options: {
                 closeRightSidebar: true,
@@ -290,7 +365,7 @@ console.log(foo(5));
                     options: {
                         class: 'data-map-container',
                         token: '',
-                        mbOptions: {                            
+                        mbOptions: {
                             style: 'mapbox://styles/mapbox/streets-v9',
                             center: [4.799119, 52.478137],
                             zoom: 13

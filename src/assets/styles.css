@@ -1,27 +1,39 @@
 .widget-red {
-    background: red;
+  background: red;
 }
 
 .widget-green {
-    background: green;
+  background: green;
 }
 
 .widget-orange {
-    background: orange;
+  background: orange;
 }
 
 .widget-blue {
-    background: blue;
+  background: blue;
 }
 
 .widget-yellow {
-    background: yellow;
+  background: yellow;
 }
 
-.run-dashboard {
-    padding: 5px;  
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 19%);
-    grid-template-rows: repeat(auto-fill, 250px);
-    grid-gap: 10px;
-  }
+.widget-playground-class {
+  margin: 20px;
+}
+
+.widget-playground-dashboard {
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(50%);
+  grid-template-rows: repeat(50%);
+  grid-gap: 10px;
+}
+
+.billboard-dashboard {
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 19%);
+  grid-template-rows: repeat(auto-fill, 250px);
+  grid-gap: 10px;
+}
