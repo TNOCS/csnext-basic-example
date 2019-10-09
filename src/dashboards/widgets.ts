@@ -364,7 +364,7 @@ console.log(foo(5));
                     component: CsMap,
                     options: {
                         class: 'data-map-container',
-                        token: '',
+                        token: 'pk.eyJ1IjoiZGFteWxlbiIsImEiOiJjazFqN2ljNzYwMTJlM2xucGV3enJvYjE4In0.kArBU3x7YIy3DhfyQhtSGw',
                         mbOptions: {
                             style: 'mapbox://styles/mapbox/streets-v9',
                             center: [4.799119, 52.478137],
