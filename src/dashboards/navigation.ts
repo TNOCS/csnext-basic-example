@@ -1,8 +1,9 @@
-import { MdWidget, Single, CssGrid } from "@csnext/cs-client";
+import { MdWidget, Single, CssGrid, GridLayout } from "@csnext/cs-client";
 import { IDashboard, CssGridWidgetOptions, HeaderOptions } from '@csnext/cs-core';
 import NavigationOptionsWidget from '../components/navigation-options-widget.vue';
 import HeaderOptionsWidget from '../components/header-options-widget.vue';
 import ThemeOptionsWidget from '../components/theme-options-widget.vue';
+import MenuPlayground from '../components/menu-playground.vue';
 
 export const navigation: IDashboard = {
     title: "Navigation",
@@ -107,7 +108,7 @@ export const navigation: IDashboard = {
                         {
                             component: MdWidget,
                             data: 'step 2'
-                        }                        
+                        }
                     ]
                 },
                 {
@@ -122,6 +123,18 @@ export const navigation: IDashboard = {
                     ]
                 }
             ]
+        },
+        {
+            title: "Menus",
+            path: "/navigation/menus",
+            layout: GridLayout.id,
+            widgets: [
+                {
+                    component: MenuPlayground,
+                }
+            ]
+
+
         }
 
     ]

@@ -11,15 +11,13 @@ import WidgetToolbarPlayground from './../components/widget-toolbar-playground.v
 
 const widget_menus = [
     {
-        visible: true,
         icon: 'message',
         toolTip: 'Trigger notification',
         action: (m) => {
             AppState.Instance.TriggerNotification({ title: 'clicked' });
         }
     },
-    {
-        visible: true,
+    {        
         icon: 'invert_colors',
         toolTip: 'Toggle dark/light mode',
         action: (m) => {
@@ -27,8 +25,7 @@ const widget_menus = [
             AppState.Instance.project.theme!.dark = !AppState.Instance.project.theme!.dark;
         }
     },
-    {
-        visible: true,
+    {        
         icon: 'filter_list',
         toolTip: 'Toggle dark/light mode',
         items: [
