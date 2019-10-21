@@ -7,6 +7,8 @@ import './assets/styles.css';
 import { layouts } from './dashboards/layouts';
 import { widgets } from './dashboards/widgets';
 import { navigation } from './dashboards/navigation';
+import { maps } from './dashboards/maps';
+import { LayerSource, MapLayers } from '@csnext/cs-map';
 
 Vue.config.productionTip = false;
 
@@ -17,6 +19,9 @@ new Vue({
 }).$mount("#app");
 
 AppState.Instance.init({
+  datasources: {
+    maps: new MapLayers()
+  },
   header: {
     title: "Testing app",
     logo: "images/logo.png"
@@ -34,6 +39,13 @@ AppState.Instance.init({
     temporary: false,
     visible: true,
     width: 240
+  },
+  rightSidebar: {
+    width: 400,
+    open: false,
+    right: true,
+    sidebars: {}
+
   },
   theme: {
     dark: false,
@@ -61,7 +73,8 @@ AppState.Instance.init({
     },
     layouts,
     navigation,
-    widgets
+    widgets,
+    maps
   ]
 });
 
