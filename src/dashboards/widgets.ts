@@ -1,6 +1,6 @@
 import { Billboard } from '@csnext/cs-billboard';
 import { CsMarkdown } from '@csnext/cs-markdown';
-import { GridLayout, MdWidgetOptions, CssGrid, MdWidget, AppState } from "@csnext/cs-client";
+import { GridLayout, CssGrid, AppState } from "@csnext/cs-client";
 import { CssGridDashboardOptions, IMenu, IWidget } from '@csnext/cs-core';
 import { CsMap, MapOptions } from '@csnext/cs-map';
 import { CsTimeline, TimelineWidgetOptions } from '@csnext/cs-timeline';
@@ -188,7 +188,7 @@ console.log(foo(5));
 `,
                     options: {
                         emoji: true
-                    } as MdWidgetOptions
+                    } as any
 
                 }
             ]

@@ -1,6 +1,5 @@
 import Vue from "vue";
-import { CsApp, AppState, CsPlugin, GridLayout, CsIntroWidget, IntroWidgetOptions } from "@csnext/cs-client";
-import { NavigationOptions } from '@csnext/cs-core';
+import { CsApp, AppState, CsPlugin, GridLayout, CsIntroWidget } from "@csnext/cs-client";
 
 // include style definitions used for widgets
 import './assets/styles.css';
@@ -8,7 +7,9 @@ import { layouts } from './dashboards/layouts';
 import { widgets } from './dashboards/widgets';
 import { navigation } from './dashboards/navigation';
 import { maps } from './dashboards/maps';
-import { LayerSource, MapLayers } from '@csnext/cs-map';
+import { MapLayers } from '@csnext/cs-map';
+import { CsInfo, InfoDashboardManager } from '@csnext/cs-markdown';
+import { IDashboard } from '@csnext/cs-core';
 
 Vue.config.productionTip = false;
 
@@ -41,11 +42,24 @@ AppState.Instance.init({
     width: 240
   },
   rightSidebar: {
-    width: 400,
+    width: 480,
     open: false,
-    right: true,
-    sidebars: {}
-
+    clipped: true,
+    sidebars: {
+      background: {
+        id: 'info',
+        icon: 'info',
+        layout: GridLayout.id,        
+        manager: InfoDashboardManager.id,
+        options: {
+          showToolbar: false,
+          shortcut: {
+            code: 'F2'
+          }
+        },
+        widgets: [{ component: CsInfo, id: 'search', data: 'testje'}]
+      } as IDashboard
+    }
   },
   theme: {
     dark: false,
@@ -64,9 +78,13 @@ AppState.Instance.init({
       title: 'Intro',
       icon: 'home',
       path: '/',
+      info: {
+        title: 'Intro',
+        markdownUrl: 'https://raw.githubusercontent.com/TNOCS/csnext/master/packages/cs-docs/docs/README.md'
+      },
       widgets: [
         {
-          component: CsIntroWidget,          
+          component: CsIntroWidget,
           data: 'test'
         }
       ]

@@ -15,6 +15,10 @@ export const layouts: IDashboard = {
             path: "/single",
             title: "Single",
             layout: Single.id,
+            info: {
+                title: 'Single',
+                markdownUrl: 'https://raw.githubusercontent.com/TNOCS/csnext/master/packages/cs-docs/docs/guide/layout.md'
+            },
             widgets: [
                 {
                     component: MdWidget,
@@ -22,7 +26,7 @@ export const layouts: IDashboard = {
                     options: {
                         class: 'widget-red'
                     }
-                }                
+                }
             ]
         },
         {
@@ -273,7 +277,7 @@ export const layouts: IDashboard = {
                         height: 2,
 
                     }
-                }               
+                }
             ]
         }
     ]
