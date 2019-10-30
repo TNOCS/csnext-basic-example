@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+public/geojson/gemeenten.json
 /dist
 
 /tests/e2e/videos/

@@ -2,40 +2,15 @@
   <v-container v-if="mapWidget">
     <h1>Layer Examples</h1>
 
-  <v-layout>
-    <v-card outlined class="example-card" v-for="example in examples" :key="example">
-      <v-list-item three-line>
-        <v-list-item-content>
-          <div class="overline mb-4">{{example.category}}</div>
-          <v-list-item-title class="headline mb-1">{{example.title}}</v-list-item-title>
-          <v-list-item-subtitle>{{example.description}}</v-list-item-subtitle>
-        </v-list-item-content>
-
-        <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
-      </v-list-item>
-
-      <v-card-actions>
-        <v-btn
-          text
-          v-for="action in example.actions"
-          @click="action.callback"
-          :key="action.title"
-        >{{action.title}}</v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-layout>
-
-    <!-- <v-btn @click="addSimpleGeojsonLayer()">Add simple geojson layer</v-btn>
-        <v-btn @click="addPolygonGeojsonLayer()">Add polygon geojson layer</v-btn>
-
-    <v-btn @click="addPointsLayer()">Add points layer</v-btn>-->
+    <examples-list :examples="examples"></examples-list>
   </v-container>
 </template>
 
 <style scoped>
 .example-card {
-  width: 50%;
+  width: calc(50% - 10px);
   margin: 5px;
+  float: left;
 }
 </style>
 
@@ -44,31 +19,21 @@ import { Component, Vue } from "vue-property-decorator";
 import { WidgetBase, AppState } from "@csnext/cs-client";
 import { IProject, IMenu, IFormOptions, IWidget } from "@csnext/cs-core";
 import { CsForm } from "@csnext/cs-form";
+import ExamplesList, { Example } from "./examples-list.vue";
 import {
   LayerSource,
   MapDatasource,
   MapOptions,
   GeojsonLayer,
   GeojsonPlusLayer,
-  IMapLayer
+  IMapLayer,
+  LayerEditor
 } from "@csnext/cs-map";
 import { CirclePaint } from "mapbox-gl";
 import { FeatureCollection } from "geojson";
 
-export class ExampleAction {
-  public title?: string;
-  public callback?: () => void;
-}
-
-export class Example {
-  public category?: string;
-  public title?: string;
-  public description?: string;
-  public actions?: ExampleAction[];
-}
-
 @Component({
-  components: { CsForm }
+  components: { CsForm, ExamplesList }
 })
 export default class LayersPlayground extends WidgetBase {
   public project!: IProject;
@@ -78,11 +43,13 @@ export default class LayersPlayground extends WidgetBase {
   public simpleLayer?: IMapLayer;
   public polygonLayer?: IMapLayer;
 
+  polygonLayerId = "polygon layer";
+  pointLayerId = "point layer";
+
   public menuFormDef?: IFormOptions;
 
   constructor() {
     super();
-   
   }
 
   contentLoaded(ms: MapDatasource) {
@@ -94,14 +61,28 @@ export default class LayersPlayground extends WidgetBase {
     this.mapWidget = AppState.Instance.findWidget(
       "layers-map-playground-widget"
     );
-     this.examples.push({
+    this.examples.push({
       category: "geojson",
       title: "Add points layer",
       description: "",
       actions: [
-        { title: "add layer", callback: this.addSimpleGeojsonLayer },
-        { title: "remove layer", callback: ()=>{ this.removeLayer(this.simpleLayer); } },
-        { title: "edit layer", callback: ()=>{ this.editLayer(this.simpleLayer); } }
+        { title: "add layer", icon: 'add', callback: this.addSimpleGeojsonLayer },
+        {
+          title: "remove layer", icon: 'remove',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.removeLayer(this.pointLayerId);
+            }
+          }
+        },
+        {
+          title: "edit layer", icon: 'edit',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.editLayer(this.pointLayerId);
+            }
+          }
+        }
       ]
     });
     this.examples.push({
@@ -109,28 +90,129 @@ export default class LayersPlayground extends WidgetBase {
       title: "Add polygon layer",
       description: "",
       actions: [
-        { title: "add layer", callback: this.addPolygonGeojsonLayer },
-        { title: "remove layer", callback: ()=>{ this.removeLayer(this.polygonLayer); } }
+        { title: "add layer", icon: 'add', callback: this.addPolygonGeojsonLayer },
+        {
+          title: "remove layer", icon: 'remove',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.removeLayer(this.polygonLayerId);
+            }
+          }
+        },
+        {
+          title: "edit layer", icon: 'edit',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.editLayer(this.polygonLayerId);
+            }
+          }
+        }
+      ]
+    });
+    this.examples.push({
+      category: "geojson",
+      title: "World Cities",
+      actions: [
+        {
+          title: "add layer", icon: 'add',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.addGeojsonLayer(
+                "world cities",
+                "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places.geojson",
+                {
+                  popup: "{{properties.NAME}}, {{properties.ADM0NAME}}",
+                  mapbox: {
+                    circlePaint: {
+                      "circle-radius": 10,
+                      "circle-color": "red"
+                    }
+                  },
+                  pointCircle: true
+                }
+              );
+            }
+          }
+        },
+        {
+          title: "remove layer", icon: 'remove',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.removeLayer("world cities");
+            }
+          }
+        },
+        {
+          title: "edit layer", icon: 'edit',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.editLayer("world cities");
+            }
+          }
+        }
+      ]
+    });
+
+    this.examples.push({
+      category: "geojson",
+      title: "CBS gemeenten",
+      actions: [
+        {
+          title: "add layer", icon: 'add',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.addGeojsonLayer(
+                "cbs gemeenten",
+                "geojson/gemeenten.json",
+                {
+                  popup: "{{properties.gemeentenaam}}",                  
+                  mapbox: {
+                    fillPaint: {
+                      "fill-color": "red",                      
+                    }
+                  },
+                  fill: true,
+                                    
+                },
+                ["cbs"],
+                "meta/cbs.json",
+                "gemeente"
+              );
+            }
+          }
+        },
+        {
+          title: "remove layer", icon: 'remove',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.removeLayer("cbs gemeenten");
+            }
+          }
+        },
+        {
+          title: "edit layer", icon: 'edit',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.editLayer("cbs gemeenten");
+            }
+          }
+        }
       ]
     });
   }
 
-  editLayer(layer?: IMapLayer) {
-    if (!layer) { return; }
-
-  }
-
- addPolygonGeojsonLayer() {
+  addPolygonGeojsonLayer() {
     if (!this.mapDatasource) {
       return;
     }
 
     this.mapDatasource
-      .addGeojsonLayer("polygon layer", "geojson/provinces.json", {
+      .addGeojsonLayer(this.polygonLayerId, "geojson/provinces.json", {
+        popup: "{{properties.name}}",
         mapbox: {
           fillPaint: {
             "fill-color": "blue",
-            "fill-opacity": 0.5,            
+            "fill-opacity": 0.5
           },
           linePaint: {
             "line-color": "red"
@@ -144,24 +226,18 @@ export default class LayersPlayground extends WidgetBase {
       .catch(e => {});
   }
 
-  removeLayer(layer?: IMapLayer) {
-    if (layer && this.mapDatasource) {
-      this.mapDatasource.removeLayer(layer.id);
-      
-    }
-  }
-
   addSimpleGeojsonLayer() {
     if (!this.mapDatasource) {
       return;
     }
 
     this.mapDatasource
-      .addGeojsonLayer("point layer", "geojson/monumentaal_groen.json", {
+      .addGeojsonLayer(this.pointLayerId, "geojson/monumentaal_groen.json", {
+        popup: "{{properties.Naam}}",
         mapbox: {
           circlePaint: {
             "circle-radius": 10,
-            "circle-color": "blue"
+            "circle-color": "red"
           }
         },
         pointCircle: true

@@ -1,4 +1,4 @@
-import { MdWidget, Single, CssGrid, GridLayout } from "@csnext/cs-client";
+import { Single, CssGrid, GridLayout, HtmlWidget } from "@csnext/cs-client";
 import { IDashboard, CssGridWidgetOptions, HeaderOptions } from '@csnext/cs-core';
 import NavigationOptionsWidget from '../components/navigation-options-widget.vue';
 import HeaderOptionsWidget from '../components/header-options-widget.vue';
@@ -60,7 +60,7 @@ export const navigation: IDashboard = {
                     layout: Single.id,
                     widgets: [
                         {
-                            component: MdWidget,
+                            component: HtmlWidget,
                             data: 'Tab 1'
                         }
                     ]
@@ -71,7 +71,7 @@ export const navigation: IDashboard = {
                     layout: Single.id,
                     widgets: [
                         {
-                            component: MdWidget,
+                            component: HtmlWidget,
                             data: 'tab 2'
                         }
                     ]
@@ -95,7 +95,7 @@ export const navigation: IDashboard = {
                     layout: Single.id,
                     widgets: [
                         {
-                            component: MdWidget,
+                            component: HtmlWidget,
                             data: 'step 1'
                         }
                     ]
@@ -106,7 +106,7 @@ export const navigation: IDashboard = {
                     layout: Single.id,
                     widgets: [
                         {
-                            component: MdWidget,
+                            component: HtmlWidget,
                             data: 'step 2'
                         }
                     ]
@@ -117,7 +117,7 @@ export const navigation: IDashboard = {
                     layout: Single.id,
                     widgets: [
                         {
-                            component: MdWidget,
+                            component: HtmlWidget,
                             data: 'step 3'
                         }
                     ]

@@ -1,4 +1,4 @@
-import { MdWidget, GridLayout, CardWidgetOptions, Single, CssGrid, LayoutManager } from "@csnext/cs-client";
+import { HtmlWidget, GridLayout, CardWidgetOptions, Single, CssGrid, LayoutManager } from "@csnext/cs-client";
 import { IDashboard, CssGridWidgetOptions, CssGridDashboardOptions, IDashboardOptions } from '@csnext/cs-core'
 import { SplitPanelOptions, SplitPanel } from '@csnext/cs-split-panel';
 import { DragLayout, DragLayoutOptions } from '@csnext/cs-drag-grid'
@@ -21,7 +21,7 @@ export const layouts: IDashboard = {
             },
             widgets: [
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 1',
                     options: {
                         class: 'widget-red'
@@ -35,21 +35,21 @@ export const layouts: IDashboard = {
             layout: GridLayout.id,
             widgets: [
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 1',
                     options: {
                         class: 'widget-red'
                     }
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 2',
                     options: {
                         class: 'widget-orange'
                     }
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 3',
                     options: {
                         class: 'widget-green'
@@ -67,7 +67,7 @@ export const layouts: IDashboard = {
             } as CssGridDashboardOptions,
             widgets: [
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 1',
                     options: {
                         class: 'widget-red',
@@ -77,7 +77,7 @@ export const layouts: IDashboard = {
                         rowEnd: 2
                     } as CssGridWidgetOptions
                 }, {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 2',
                     options: {
                         class: 'widget-blue',
@@ -88,7 +88,7 @@ export const layouts: IDashboard = {
                     } as CssGridWidgetOptions
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 3',
                     options: {
                         class: 'widget-blue',
@@ -99,7 +99,7 @@ export const layouts: IDashboard = {
                     } as CssGridWidgetOptions
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 3',
                     options: {
                         class: 'widget-blue',
@@ -120,14 +120,14 @@ export const layouts: IDashboard = {
             } as CssGridDashboardOptions,
             widgets: [
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 1',
                     options: {
                         class: 'widget-red',
                         area: 'header'
                     } as CssGridWidgetOptions
                 }, {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 2',
                     options: {
                         class: 'widget-yellow',
@@ -135,7 +135,7 @@ export const layouts: IDashboard = {
                     } as CssGridWidgetOptions
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 3',
                     options: {
                         class: 'widget-blue',
@@ -143,7 +143,7 @@ export const layouts: IDashboard = {
                     } as CssGridWidgetOptions
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 4',
                     options: {
                         class: 'widget-green',
@@ -188,7 +188,7 @@ export const layouts: IDashboard = {
             } as IDashboardOptions,
             widgets: [
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     id: 'widget-1',
                     data: 'widget 1',
                     options: {
@@ -196,7 +196,7 @@ export const layouts: IDashboard = {
                     }
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     id: 'widget-2',
                     data: 'widget 2',
                     options: {
@@ -204,7 +204,7 @@ export const layouts: IDashboard = {
                     }
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     id: 'widget-3',
                     data: 'widget 3',
                     options: {
@@ -230,7 +230,7 @@ export const layouts: IDashboard = {
             widgets: [
                 {
                     id: 'widget1',
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 1',
                     options: {
                         elevation: 0,
@@ -244,7 +244,7 @@ export const layouts: IDashboard = {
                 },
                 {
                     id: 'widget2',
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 2',
                     options: {
                         height: 2
@@ -252,7 +252,7 @@ export const layouts: IDashboard = {
                 },
                 {
                     id: 'widget3',
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 3',
                     options: {
                         height: 2
@@ -260,7 +260,7 @@ export const layouts: IDashboard = {
                     }
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 4',
                     options: {
                         height: 2
@@ -268,7 +268,7 @@ export const layouts: IDashboard = {
                     }
                 },
                 {
-                    component: MdWidget,
+                    component: HtmlWidget,
                     data: 'widget 5',
                     options: {
                         x: 6,

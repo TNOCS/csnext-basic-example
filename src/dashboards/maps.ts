@@ -1,4 +1,4 @@
-import { CssGrid, MdWidget } from "@csnext/cs-client";
+import { CssGrid } from "@csnext/cs-client";
 import { CssGridDashboardOptions, IDashboard } from '@csnext/cs-core';
 import { CsMap, MapOptions } from '@csnext/cs-map';
 import { MapboxOptions } from 'mapbox-gl';
@@ -26,10 +26,11 @@ export const maps = {
                         class: 'data-map-container',
                         token: 'pk.eyJ1IjoiZGFteWxlbiIsImEiOiJjazFqN2ljNzYwMTJlM2xucGV3enJvYjE4In0.kArBU3x7YIy3DhfyQhtSGw',
                         mbOptions: {
-                            style: 'mapbox://styles/mapbox/streets-v9',
+                            style:  'mapbox://styles/mapbox/streets-v9',
                             center: [4.799119, 52.478137],
                             zoom: 13
                         } as MapboxOptions,
+                        showBuildings: false,
                         showDraw: true,
                         showRuler: true,
                         showGrid: false,
@@ -62,7 +63,7 @@ export const maps = {
                     component: CsMap,
                     datasource: 'maps',
                     options: {
-                        area: 'left',
+                        area: 'right',
                         class: 'data-map-container',
                         token: 'pk.eyJ1IjoiZGFteWxlbiIsImEiOiJjazFqN2ljNzYwMTJlM2xucGV3enJvYjE4In0.kArBU3x7YIy3DhfyQhtSGw',
                         mbOptions: {
@@ -84,7 +85,7 @@ export const maps = {
                     component: LayersPlayground,
                     datasource: 'maps',
                     options: {
-                        area: 'right'
+                        area: 'left'
                     }
                 },
             ]
