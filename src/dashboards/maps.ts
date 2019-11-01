@@ -26,7 +26,7 @@ export const maps = {
                         class: 'data-map-container',
                         token: 'pk.eyJ1IjoiZGFteWxlbiIsImEiOiJjazFqN2ljNzYwMTJlM2xucGV3enJvYjE4In0.kArBU3x7YIy3DhfyQhtSGw',
                         mbOptions: {
-                            style:  'mapbox://styles/mapbox/streets-v9',
+                            style:  'mapbox://styles/mapbox/light-v10',
                             center: [4.799119, 52.478137],
                             zoom: 13
                         } as MapboxOptions,
@@ -67,9 +67,10 @@ export const maps = {
                         class: 'data-map-container',
                         token: 'pk.eyJ1IjoiZGFteWxlbiIsImEiOiJjazFqN2ljNzYwMTJlM2xucGV3enJvYjE4In0.kArBU3x7YIy3DhfyQhtSGw',
                         mbOptions: {
-                            style: 'mapbox://styles/mapbox/streets-v9',
+                            style: 'mapbox://styles/mapbox/light-v10',
                             center: [4.799119, 52.478137],
-                            zoom: 13
+                            zoom: 13,
+                            logoPosition: "bottom-right"                            
                         } as MapboxOptions,
                         showDraw: false,
                         showRuler: false,
@@ -77,6 +78,7 @@ export const maps = {
                         showStyles: true,
                         showGeocoder: false,
                         showTraffic: false,
+                        showLegend: true,
                         showLayers: true
                     } as MapOptions
                 },
@@ -89,7 +91,6 @@ export const maps = {
                     }
                 },
             ]
-        },
-
+        }       
     ]
 } as IDashboard;

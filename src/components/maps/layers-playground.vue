@@ -163,20 +163,11 @@ export default class LayersPlayground extends WidgetBase {
             if (this.mapDatasource) {
               this.mapDatasource.addGeojsonLayer(
                 "cbs gemeenten",
-                "geojson/gemeenten.json",
-                {
-                  popup: "{{properties.gemeentenaam}}",                  
-                  mapbox: {
-                    fillPaint: {
-                      "fill-color": "red",                      
-                    }
-                  },
-                  fill: true,
-                                    
-                },
+                "geojson/gemeente.json",
+                undefined,
                 ["cbs"],
-                "meta/cbs.json",
-                "gemeente"
+                "meta/cbs.json", 
+                "default"
               );
             }
           }
@@ -194,6 +185,14 @@ export default class LayersPlayground extends WidgetBase {
           callback: () => {
             if (this.mapDatasource) {
               this.mapDatasource.editLayer("cbs gemeenten");
+            }
+          }
+        },
+        {
+          title: "layer details", icon: 'list',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.openLayer("cbs gemeenten");
             }
           }
         }

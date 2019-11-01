@@ -18,7 +18,7 @@
 
             v-for="action in example.actions"
             @click="action.callback"
-            :icon="action.icon"
+            :icon="action.icon !== undefined"
             :key="action.title"
           >
           <v-icon v-if="action.icon">{{action.icon}}</v-icon>

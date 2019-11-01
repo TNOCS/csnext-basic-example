@@ -3,6 +3,15 @@
         "gemeente": {
             "name": "gemeente",
             "style": {
+                "popup": "{{properties.gemeentenaam}}",
+                "mapbox": {
+                    "fillPaint": {
+                        "fill-color": "red"
+                    }
+                },
+                "fill": true
+            },
+            "style2": {
                 "fillColor": "#dfd5b2",
                 "fillOpacity": 0.9,
                 "strokeColor": "#999966",
@@ -20,1037 +29,2530 @@
             "selectActions": [
                 "load buurten"
             ],
-            "contourProperty": "_contour",
-            "propertyTypeKeys": "aant_inw;ster_totaal;a_aangep_w;a_apb_w;a_napb_w;a_apb_in_ond;a_apb_onb;a_huko_onb;a_koopwon;a_huurwon;a_1gezw;a_mgezw;ster_0;ster_1;ster_2;ster_3;ster_4;ster_5;ster_onb;ster_onb_duplicate;ster_in_ond;gemeentecode;GM_CODE;gemeentenaam;p_huko_onb;p_koopwon;p_huurwon;p_aangep_w;p_apb_w;p_napb_w;p_apb_onb;p_apb_in_ond;p_1gezw;p_mgezw;"
-        },
-        "provincie": {
-            "name": "provincie",
-            "style": {
-                "fillColor": "#0000aa",
-                "fillOpacity": 0.99,
-                "strokeColor": "#000000",
-                "selectedStrokeColor": "#000000",
-                "drawingMode": "Point",
-                "strokeWidth": 2,
-                "selectedStrokeWidth": 4,
-                "cornerRadius": "50% 0 0 50",
-                "iconWidth": 24,
-                "iconHeight": 24,
-                "iconUri": "images/i.png",
-                "nameLabel": "provincienaam"
-            },
-            "selectActions": [
-                "select provincie"
-            ],
-            "contourProperty": "contour",
-            "propertyTypeKeys": "provincienaam;provinciecode;aant_inw;ster_totaal;ster_0;ster_1;ster_2;ster_3;ster_4;ster_5;ster_onb;ster_onb_duplicate;a_huko_onb;a_koopwon;a_huurwon;p_huko_onb;p_koopwon;p_huurwon;a_1gezw;a_mgezw;a_aangep_w;a_apb_w;a_napb_w;a_apb_onb;p_aangep_w;p_apb_w;p_napb_w;p_apb_onb;p_apb_in_ond;p_1gezw;p_mgezw;"
-        },
-        
-        "wijk": {
-            "name": "wijk",
-            "style": {
-                "fillColor": "#ff9900",
-                "strokeColor": "#000000",
-                "drawingMode": "MultiPolygon",
-                "strokeWidth": 1,
-                "iconWidth": 32,
-                "iconHeight": 32,
-                "iconUri": "images/gemeente.png",
-                "nameLabel": "WK_NAAM",
-                "maxTitleResolution": -1
-            },
-            "propertyTypeKeys": "AANT_INW;AANT_MAN;AANT_VROUW;P_00_14_JR;NR_KIDS;P_15_24_JR;P_25_44_JR;P_45_64_JR;P_65_EO_JR;NR_OUDJES;P_ONGEHUWD;P_GEHUWD;P_GESCHEID;P_VERWEDUW;P_WEST_AL;P_N_W_AL;P_MAROKKO;P_ANT_ARU;P_SURINAM;P_TURKIJE;P_OVER_NW;AUTO_TOT;AUTO_HH;AUTO_LAND;BEDR_AUTO;MOTOR_2W;OPP_TOT;OPP_LAND;OPP_WATER;GM_NAAM;WATER;BEV_DICHTH;AANTAL_HH;P_EENP_HH;P_HH_Z_K;P_HH_M_K;GEM_HH_GR;A_BST_B;A_BST_NB;A_LFTJ6J;A_LFTO6J;AF_ZIEK_I;AV5_ZIEK_I;AV10ZIEK_I;AV20ZIEK_I;AF_ZIEK_E;AV5_ZIEK_E;AV10ZIEK_E;AV20ZIEK_E;AF_KDV;AV1_KDV;AV3_KDV;AV5_KDV;AF_BSO;AV1_BSO;AV3_BSO;AV5_BSO;AF_OPRITH;AF_TREINST;AF_OVERST;AF_BIBLIO;AF_IJSBAAN",
-            "legendExpr": [
-                {
-                    "title": "#Inwoners",
-                    "type": "number",
-                    "stringFormat": "{0:#,#}",
-                    "expression": "sum(features, 'AANT_INW')"
-                },
-                {
-                    "title": "#Kinderen <15",
-                    "type": "number",
-                    "stringFormat": "{0:#,#}",
-                    "expression": "sum(features, 'nr_oudjes')"
-                },
-                {
-                    "title": "#Ouderen >64",
-                    "type": "number",
-                    "stringFormat": "{0:#,#}",
-                    "expression": "sum(features, 'nr_kids')"
-                }
-            ]
-        },
-        "buurt": {
-            "name": "buurt",
-            "style": {
-                "fillColor": "#ff9900",
-                "strokeColor": "#000000",
-                "drawingMode": "MultiPolygon",
-                "strokeWidth": 1,
-                "iconWidth": 32,
-                "iconHeight": 32,
-                "iconUri": "images/gemeente.png",
-                "nameLabel": "BU_NAAM",
-                "maxTitleResolution": -1
-            },
-            "propertyTypeKeys": "AANT_INW;AANT_MAN;AANT_VROUW;P_00_14_JR;NR_KIDS;P_15_24_JR;P_25_44_JR;P_45_64_JR;P_65_EO_JR;NR_OUDJES;P_ONGEHUWD;P_GEHUWD;P_GESCHEID;P_VERWEDUW;P_WEST_AL;P_N_W_AL;P_MAROKKO;P_ANT_ARU;P_SURINAM;P_TURKIJE;P_OVER_NW;AUTO_TOT;AUTO_HH;AUTO_LAND;BEDR_AUTO;MOTOR_2W;OPP_TOT;OPP_LAND;OPP_WATER;GM_NAAM;WATER;BEV_DICHTH;AANTAL_HH;P_EENP_HH;P_HH_Z_K;P_HH_M_K;GEM_HH_GR;A_BST_B;A_BST_NB;A_LFTJ6J;A_LFTO6J;AF_ZIEK_I;AV5_ZIEK_I;AV10ZIEK_I;AV20ZIEK_I;AF_ZIEK_E;AV5_ZIEK_E;AV10ZIEK_E;AV20ZIEK_E;AF_KDV;AV1_KDV;AV3_KDV;AV5_KDV;AF_BSO;AV1_BSO;AV3_BSO;AV5_BSO;AF_OPRITH;AF_TREINST;AF_OVERST;AF_BIBLIO;AF_IJSBAAN",
-            "legendExpr": [
-                {
-                    "title": "#Inwoners",
-                    "type": "number",
-                    "stringFormat": "{0:#,#}",
-                    "expression": "sum(features, 'AANT_INW')"
-                },
-                {
-                    "title": "#Kinderen <15",
-                    "type": "number",
-                    "stringFormat": "{0:#,#}",
-                    "expression": "sum(features, 'nr_oudjes')"
-                },
-                {
-                    "title": "#Ouderen >64",
-                    "type": "number",
-                    "stringFormat": "{0:#,#}",
-                    "expression": "sum(features, 'nr_kids')"
-                }
-            ]
+            "contourProperty": "_contour"
         }
     },
     "propertyTypeData": {
-        "nr_kids": {
-            "type": "number",
-            "title": "Aantal kinderen <15",
-            "stringFormat": "{0:#,#}",
-            "expression": "properties.p_00_14_jr * properties.aant_inw / 100",
-            "visibleInCallOut": true,
-            "label": "nr_kids"
+        "NAAM": {
+            "type": "text",
+            "title": "Postcode 4"
         },
-        "nr_oudjes": {
-            "type": "number",
-            "title": "Aantal ouderen >64",
-            "stringFormat": "{0:#,#}",
-            "expression": "properties.p_65_eo_jr * properties.aant_inw / 100",
-            "visibleInCallOut": true,
-            "label": "nr_oudjes"
-        },
-        "AANT_GEM": {
+        "aant_gem": {
+            "label": "aant_gem",
             "type": "number",
             "title": "Aantal gemeentes",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
-            "canEdit": true,
-            "isSearchable": false
-        },
-        "AANT_INW": {
-            "type": "number",
-            "title": "Aantal inwoners",
-            "stringFormat": "{0:0,0}",
-            "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
         "aant_inw": {
+            "label": "aant_inw",
             "type": "number",
             "title": "Aantal inwoners",
-            "section": "Info",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AANT_MAN": {
+        "aant_man": {
+            "label": "aant_man",
             "type": "number",
             "title": "Aantal mannen",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AANT_VROUW": {
+        "aant_vrouw": {
+            "label": "aant_vrouw",
             "type": "number",
             "title": "Aantal vrouwen",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
-            "isSearchable": false
+            "isSearchable": false,
         },
-        "P_00_14_JR": {
+        "p_00_14_jr": {
+            "label": "p_00_14_jr",
             "type": "number",
             "title": "Leeftijd jonger dan 15 jaar",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_15_24_JR": {
+        "p_15_24_jr": {
+            "label": "p_15_24_jr",
             "type": "number",
             "title": "Leeftijd 15 tot en met 24 jaar",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_25_44_JR": {
+        "p_25_44_jr": {
+            "label": "p_25_44_jr",
             "type": "number",
             "title": "Leeftijd 25 tot en met 44 jaar",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_45_64_JR": {
-            "label": "P_45_64_JR",
+        "p_45_64_jr": {
+            "label": "p_45_64_jr",
             "type": "number",
             "title": "Leeftijd 45 tot en met 64 jaar",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_65_EO_JR": {
+        "p_65_eo_jr": {
+            "label": "p_65_eo_jr",
             "type": "number",
             "title": "Leeftijd 65 jaar en ouder",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_ONGEHUWD": {
+        "p_ongehuwd": {
+            "label": "p_ongehuwd",
             "type": "number",
             "title": "Ongehuwd",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_GEHUWD": {
+        "p_gehuwd": {
+            "label": "p_gehuwd",
             "type": "number",
             "title": "Gehuwd",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_GESCHEID": {
+        "p_gescheid": {
+            "label": "p_gescheid",
             "type": "number",
             "title": "Gescheiden",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_VERWEDUW": {
+        "p_verweduw": {
+            "label": "p_verweduw",
             "type": "number",
             "title": "Verweduwd",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_WEST_AL": {
+        "p_west_al": {
+            "label": "p_west_al",
             "type": "number",
             "title": "Westerse allochtonen",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_N_W_AL": {
+        "p_n_w_al": {
+            "label": "p_n_w_al",
             "type": "number",
             "title": "Niet-Westerse allochtonen",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_MAROKKO": {
+        "p_marokko": {
+            "label": "p_marokko",
             "type": "number",
             "title": "Marokkaans",
             "description": "Percentage allochtonen van Marokkaanse afkomst",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_ANT_ARU": {
+        "p_ant_aru": {
+            "label": "p_ant_aru",
             "type": "number",
             "title": "Antilliaans/Arubaans",
             "description": "Percentage allochtonen van Antilliaans/Arubaanse afkomst",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_SURINAM": {
+        "p_surinam": {
+            "label": "p_surinam",
             "type": "number",
             "title": "Surinaams",
             "description": "Percentage allochtonen van Surinaamse afkomst",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_TURKIJE": {
+        "p_turkije": {
+            "label": "p_turkije",
             "type": "number",
             "title": "Turks",
             "description": "Percentage allochtonen van Turkse afkomst",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_OVER_NW": {
+        "p_over_nw": {
+            "label": "p_over_nw",
             "type": "number",
             "title": "Overig niet-Westers",
             "description": "Percentage allochtonen van niet-Westerse afkomst",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AUTO_TOT": {
+        "auto_tot": {
+            "label": "auto_tot",
             "type": "number",
             "title": "Auto tot",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AUTO_HH": {
+        "auto_hh": {
+            "label": "auto_hh",
             "type": "number",
             "title": "Auto hh",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AUTO_LAND": {
+        "auto_land": {
+            "label": "auto_land",
             "type": "number",
             "title": "Auto land",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "BEDR_AUTO": {
+        "bedr_auto": {
+            "label": "bedr_auto",
             "type": "number",
             "title": "Bedr auto",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "MOTOR_2W": {
+        "motor_2w": {
+            "label": "motor_2w",
             "type": "number",
             "title": "Motor 2w",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "OPP_TOT": {
+        "opp_tot": {
+            "label": "opp_tot",
             "type": "number",
             "title": "Totale oppervlakte",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "OPP_LAND": {
+        "opp_land": {
+            "label": "opp_land",
             "type": "number",
             "title": "Landoppervlakte",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "OPP_WATER": {
+        "opp_water": {
+            "label": "opp_water",
             "type": "number",
             "title": "Wateroppervlakte",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "GM_NAAM": {
+        "gm_naam": {
+            "label": "gm_naam",
             "type": "text",
-            "title": "Gemeentenaam",
-            "section": "Info",
+            "title": "Gm naam",
+            "section": "CBS",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "GM_CODE": {
-            "type": "text",
-            "title": "Gemeentecode",
-            "section": "Info",
-            "visibleInCallOut": true,
-            "canEdit": true,
-            "isSearchable": false
-        },
-        "BU_NAAM": {
-            "type": "textarea",
-            "title": "Buurtnaam",
-            "section": "CBS"
-        },
-        "WK_NAAM": {
-            "type": "textarea",
-            "title": "Wijknaam",
-            "section": "CBS"
-        },
-        "WATER": {
+        "water": {
+            "label": "water",
             "type": "boolean",
             "title": "Water",
+            "section": "CBS",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "BEV_DICHTH": {
+        "bev_dichth": {
+            "label": "bev_dichth",
             "type": "number",
             "title": "Bevolkingsdichtheid",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
-            "isSearchable": false
+            "isSearchable": false,
+            "legend": {
+                "_filter": "bev_dichth",
+                "id": "ster_3",
+                "visualAspect": "fillColor",
+                "title": "Aantal ster 3 woningen per buurt.",
+                "description": "Op deze plattegrond van de gekozen gemeente ziet u de buurten met het grootste aanbod aan ster 3 woningen die in beginsel geschikt zijn voor mensen met mobiliteitsbeperkingen.",
+                "legendKind": "discrete",
+                "legendEntries": [
+                    {
+                        "sortKey": "a",
+                        "label": ">1500",
+                        "interval": {
+                            "min": 1500,
+                            "max": 9999999
+                        },
+                        "color": "#86003e"
+                    },
+                    {
+                        "sortKey": "b",
+                        "label": "500-1500",
+                        "interval": {
+                            "min": 500,
+                            "max": 1500
+                        },
+                        "color": "#ca005d"
+                    },
+                    {
+                        "sortKey": "c",
+                        "label": "100-500",
+                        "interval": {
+                            "min": 100,
+                            "max": 500
+                        },
+                        "color": "#db5593"
+                    },
+                    {
+                        "sortKey": "d",
+                        "label": "0-100",
+                        "interval": {
+                            "min": 0,
+                            "max": 100
+                        },
+                        "color": "#edaac9"
+                    },
+                    {
+                        "sortKey": "z",
+                        "label": "Onbekend",
+                        "interval": {
+                            "min": -9999999999,
+                            "max": -1
+                        },
+                        "color": "#444444"
+                    }
+                ]
+            }
         },
-        "AANTAL_HH": {
+        "aantal_hh": {
+            "label": "aantal_hh",
             "type": "number",
             "title": "Aantal huishoudens",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_EENP_HH": {
+        "p_eenp_hh": {
+            "label": "p_eenp_hh",
             "type": "number",
-            "title": "Eénpersoonshuishoudens",
+            "title": "EÃ©npersoonshuishoudens",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_HH_Z_K": {
+        "p_hh_z_k": {
+            "label": "p_hh_z_k",
             "type": "number",
             "title": "Huishoudens zonder kinderen",
+            "section": "CBS",
             "stringFormat": "{0}%",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "P_HH_M_K": {
+        "p_hh_m_k": {
+            "label": "p_hh_m_k",
             "type": "number",
             "title": "Huishoudens met kinderen",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "GEM_HH_GR": {
+        "gem_hh_gr": {
+            "label": "gem_hh_gr",
             "type": "number",
             "title": "Gemiddelde grootte huishouden",
+            "section": "CBS",
             "stringFormat": "{0:0,0.##}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "A_BST_B": {
+        "a_bst_b": {
+            "label": "a_bst_b",
             "type": "number",
             "title": "A bst b",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "A_BST_NB": {
+        "a_bst_nb": {
+            "label": "a_bst_nb",
             "type": "number",
             "title": "A bst nb",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "A_LFTJ6J": {
+        "a_lftj6j": {
+            "label": "a_lftj6j",
             "type": "number",
             "title": "A lftj6j",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "A_LFTO6J": {
+        "a_lfto6j": {
+            "label": "a_lfto6j",
             "type": "number",
             "title": "A lfto6j",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_ZIEK_I": {
+        "af_ziek_i": {
+            "label": "af_ziek_i",
             "type": "number",
             "title": "Afstand ziekenhuis/poli",
             "description": "Gemiddelde afstand tot ziekenhuis incl. Buitenpolikliniek",
+            "section": "CBS",
             "stringFormat": "{0:0,0.#}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV5_ZIEK_I": {
+        "av5_ziek_i": {
+            "label": "av5_ziek_i",
             "type": "number",
             "title": "Ziekenhuizen/poli's binnen 5km",
             "description": "Aantal ziekenhuizen incl. Buitenpolikliniek (gemiddelde, binnen 5km over de openbare weg)",
+            "section": "CBS",
             "stringFormat": "{0:0,0.#}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV10ZIEK_I": {
+        "av10ziek_i": {
+            "label": "av10ziek_i",
             "type": "number",
             "title": "Ziekenhuizen/poli's binnen 10km",
             "description": "Aantal ziekenhuizen incl. Buitenpolikliniek (gemiddelde, binnen 10 km over de openbare weg)",
+            "section": "CBS",
             "stringFormat": "{0:0,0.#}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV20ZIEK_I": {
+        "av20ziek_i": {
+            "label": "av20ziek_i",
             "type": "number",
             "title": "Ziekenhuizen/poli's binnen 20km",
             "description": "Aantal ziekenhuizen incl. Buitenpolikliniek (gemiddelde, binnen 20 km over de openbare weg)",
+            "section": "CBS",
             "stringFormat": "{0:0,0.#}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_ZIEK_E": {
+        "af_ziek_e": {
+            "label": "af_ziek_e",
             "type": "number",
             "title": "Afstand ziekenhuis",
             "description": "Gemiddelde afstand tot ziekenhuis excl. Buitenpolikliniek",
+            "section": "CBS",
             "stringFormat": "{0:0,0.#}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV5_ZIEK_E": {
+        "av5_ziek_e": {
+            "label": "av5_ziek_e",
             "type": "number",
             "title": "Ziekenhuizen binnen 5km",
             "description": "Aantal ziekenhuizen excl. Buitenpolikliniek (gemiddelde, binnen 5km over de openbare weg)",
+            "section": "CBS",
             "stringFormat": "{0:0,0.#}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV10ZIEK_E": {
+        "av10ziek_e": {
+            "label": "av10ziek_e",
             "type": "number",
             "title": "Ziekenhuizen binnen 10km",
             "description": "Aantal ziekenhuizen excl. Buitenpolikliniek (gemiddelde, binnen 10 km over de openbare weg)",
+            "section": "CBS",
             "stringFormat": "{0:0,0.#}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV20ZIEK_E": {
+        "av20ziek_e": {
+            "label": "av20ziek_e",
             "type": "number",
             "title": "Ziekenhuizen binnen 20km",
             "description": "Aantal ziekenhuizen excl. Buitenpolikliniek (gemiddelde, binnen 20 km over de openbare weg)",
+            "section": "CBS",
             "stringFormat": "{0:0,0.#}",
             "visibleInCallOut": true,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_KDV": {
+        "af_kdv": {
+            "label": "af_kdv",
             "type": "number",
             "title": "Af kdv",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV1_KDV": {
+        "av1_kdv": {
+            "label": "av1_kdv",
             "type": "number",
             "title": "Av1 kdv",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV3_KDV": {
+        "av3_kdv": {
+            "label": "av3_kdv",
             "type": "number",
             "title": "Av3 kdv",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV5_KDV": {
+        "av5_kdv": {
+            "label": "av5_kdv",
             "type": "number",
             "title": "Av5 kdv",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_BSO": {
+        "af_bso": {
+            "label": "af_bso",
             "type": "number",
             "title": "Af bso",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV1_BSO": {
+        "av1_bso": {
+            "label": "av1_bso",
             "type": "number",
             "title": "Av1 bso",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV3_BSO": {
+        "av3_bso": {
+            "label": "av3_bso",
             "type": "number",
             "title": "Av3 bso",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AV5_BSO": {
+        "av5_bso": {
+            "label": "av5_bso",
             "type": "number",
             "title": "Av5 bso",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_OPRITH": {
+        "af_oprith": {
+            "label": "af_oprith",
             "type": "number",
             "title": "Af oprith",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_TREINST": {
+        "af_treinst": {
+            "label": "af_treinst",
             "type": "number",
             "title": "Af treinst",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_OVERST": {
+        "af_overst": {
+            "label": "af_overst",
             "type": "number",
             "title": "Af overst",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_BIBLIO": {
+        "af_biblio": {
+            "label": "af_biblio",
             "type": "number",
             "title": "Af biblio",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "AF_IJSBAAN": {
+        "af_ijsbaan": {
+            "label": "af_ijsbaan",
             "type": "number",
             "title": "Af ijsbaan",
+            "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
             "canEdit": true,
             "isSearchable": false
         },
-        "ster_0": {
-            "label": "ster_0",
-            "title": "Ster 0",
+        "af_brandw": {
+            "label": "af_brandw",
             "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "ster_1": {
-            "label": "ster_1",
-            "title": "Ster 1",
-            "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "ster_2": {
-            "label": "ster_2",
-            "title": "Ster 2",
-            "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "ster_3": {
-            "label": "ster_3",
-            "title": "Ster 3",
-            "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "ster_4": {
-            "label": "ster_4",
-            "title": "Ster 4",
-            "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "ster_5": {
-            "label": "ster_5",
-            "title": "Ster 5",
-            "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "ster_onb": {
-            "label": "ster_onb",
-            "title": "Ster onbekend",
-            "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
+            "title": "Af brandw",
+            "section": "CBS",
+            "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
-            "canEdit": true
+            "canEdit": true,
+            "isSearchable": false
         },
-        "ster_onb_duplicate": {
-            "label": "ster_onb_duplicate",
-            "title": "Ster onbekend",
-            "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
-            "expression": "(properties.ster_onb || 0) + (properties.ster_in_ond || 0)",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "ster_in_ond": {
-            "label": "ster_in_ond",
-            "title": "Ster in onderzoek",
-            "type": "number",
-            "section": "Sterren aantallen",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": false,
-            "canEdit": true
-        },
-        "ster_totaal": {
-            "label": "ster_totaal",
-            "title": "Aantal woningen",
-            "type": "number",
-            "section": "Info",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "a_huko_onb": {
-            "linkedFeature": "p_huko_onb",
-            "label": "a_huko_onb",
-            "title": "Aant. eigendom onbekend",
-            "section": "Eigendom",
-            "stringFormat": "{0:#,#}",
-            "type": "number",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "a_koopwon": {
-            "linkedFeature": "p_koopwon",
-            "label": "a_koopwon",
-            "title": "Aant. koopwoningen",
-            "type": "number",
-            "section": "Eigendom",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "a_huurwon": {
-            "linkedFeature": "p_huurwon",
-            "label": "a_huurwon",
-            "title": "Aant. huurwoningen",
-            "type": "number",
-            "section": "Eigendom",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "a_1gezw": {
-            "linkedFeature": "p_1gezw",
-            "label": "a_1gezw",
-            "title": "Aant. eengezinswoningen",
-            "type": "number",
-            "section": "Woningtype",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "a_mgezw": {
-            "linkedFeature": "p_mgezw",
-            "label": "a_mgezw",
-            "title": "Aant. meergezinswoningen",
-            "type": "number",
-            "section": "Woningtype",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "gemeentecode": {
-            "label": "gemeentecode",
-            "title": "Gemeentecode",
-            "section": "Info",
+        "naam": {
+            "label": "naam",
             "type": "text",
-            "visibleInCallOut": false,
-            "canEdit": true
-        },
-        "gemeentenaam": {
-            "label": "gemeentenaam",
-            "title": "Gemeente",
-            "section": "Info",
-            "type": "text",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "provincienaam": {
-            "label": "provincienaam",
             "title": "Naam",
-            "section": "Info",
-            "type": "text",
-            "visibleInCallOut": true,
-            "canEdit": true
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
         },
-        "provinciecode": {
-            "label": "provinciecode",
+        "adres": {
+            "label": "adres",
+            "type": "text",
+            "title": "Adres",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Postadres": {
+            "label": "Postadres",
+            "type": "text",
+            "title": "Postadres",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Postadres_postcode": {
+            "label": "Postadres_postcode",
+            "type": "text",
+            "title": "Postadres postcode",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Postadres_plaats": {
+            "label": "Postadres_plaats",
+            "type": "text",
+            "title": "Postadres plaats",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "telefoonalgemeen": {
+            "label": "telefoonalgemeen",
+            "type": "text",
+            "title": "Telefoon algemeen",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "telefoonSEH": {
+            "label": "telefoonSEH",
+            "type": "text",
+            "title": "Telefoon spoedeisende hulp",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "bedden": {
+            "label": "bedden",
+            "type": "number",
+            "title": "Aantal bedden",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Type": {
+            "label": "Type",
+            "type": "text",
+            "title": "Type",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "level": {
+            "label": "level",
+            "type": "text",
+            "title": "Level",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Name": {
+            "label": "Name",
+            "type": "text",
+            "title": "Naam",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": true
+        },
+        "Id": {
+            "label": "Id",
+            "type": "text",
+            "title": "Id",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "FeatureTypeId": {
+            "label": "FeatureTypeId",
+            "type": "text",
+            "title": "FeatureTypeId",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "BAG_id": {
+            "label": "BAG_id",
+            "type": "text",
+            "title": "BAG id",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Organisatie": {
+            "label": "Organisatie",
+            "type": "text",
+            "title": "Organisatie",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "LocatieID": {
+            "label": "LocatieID",
+            "description": "BAG locatie ID.",
+            "type": "text",
+            "title": "Locatie ID",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Locatie": {
+            "label": "Locatie",
+            "type": "text",
+            "title": "Locatie",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "LOC_TYPE": {
+            "label": "LOC_TYPE",
+            "type": "text",
+            "title": "Locatietype",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "LOC_NAAM": {
+            "label": "LOC_NAAM",
+            "type": "text",
+            "title": "Locatienaam",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "LOC_STRAAT": {
+            "label": "LOC_STRAAT",
+            "type": "text",
+            "title": "Straat",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Huisnr": {
+            "label": "Huisnr",
+            "type": "text",
+            "title": "Huisnummer",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Postcode": {
+            "label": "Postcode",
+            "type": "text",
+            "title": "Postcode",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Plaats": {
+            "label": "Plaats",
+            "type": "text",
+            "title": "Plaats",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Gemeente": {
+            "label": "Gemeente",
+            "type": "text",
+            "title": "Gemeente",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Regio": {
+            "label": "Regio",
+            "type": "text",
+            "title": "Regio",
+            "section": "Adres",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Website": {
+            "label": "Website",
+            "type": "bbcode",
+            "title": "Website",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Telefoon": {
+            "label": "Telefoon",
+            "type": "text",
+            "title": "Telefoon",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "GeoAddress": {
+            "label": "GeoAddress",
+            "type": "text",
+            "title": "GeoAddress",
+            "section": "Adres",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "wkt": {
+            "label": "wkt",
+            "type": "text",
+            "title": "<not shown>",
+            "visibleInCallOut": true,
+            "canEdit": false,
+            "isSearchable": false
+        },
+        "Brandweerorganisatie": {
+            "label": "Brandweerorganisatie",
+            "type": "text",
+            "description": "Organisatie behorende bij de eerste brandweerlocatie.",
+            "title": "Brandweerorganisatie",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Brandweerlocatie": {
+            "label": "Brandweerlocatie",
+            "type": "text",
+            "description": "De locatie van de dichtstbijzijnde brandweerlocatie",
+            "title": "1e Brandweerlocatie",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Brandweeraanrijtijd_s": {
+            "label": "Brandweeraanrijtijd_s",
+            "type": "number",
+            "title": "Brandweeraanrijtijd (s)",
+            "description": "Gemiddelde aanrijtijd vanuit dichtsbijzijnde brandweerpost, in seconden, volgens Google's route planner.",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "tweedebrandweeraanrijdelta": {
+            "label": "tweedebrandweeraanrijdelta",
+            "type": "number",
+            "title": "2de brandweeraanrijtijd (delta s)",
+            "description": "De extra tijd die de op Ã©Ã©n na dichtsbijzijnde brandweerpost nodig heeft, in seconden.",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Brandweeraanrijtijd_min": {
+            "label": "Brandweeraanrijtijd_min",
+            "type": "number",
+            "title": "1e Brandweeraanrijtijd (min)",
+            "description": "Gemiddelde aanrijtijd vanuit dichtsbijzijnde brandweerpost, in minuten, volgens Google's route planner.",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Tweede_brandweeraanrijtijd_min": {
+            "label": "Tweede_brandweeraanrijtijd_min",
+            "type": "number",
+            "title": "2de brandweeraanrijtijd (min)",
+            "description": "Gemiddelde aanrijtijd vanuit op Ã©Ã©n na dichtsbijzijnde brandweerpost, in minuten, volgens Google's route planner.",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Titel_kort": {
+            "label": "Titel_kort",
+            "type": "number",
+            "title": "Titel (kort)",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "CelsusConcernKvK": {
+            "label": "KvK",
+            "type": "bbcode",
+            "title": "Financieel en kwaliteitsrapport",
+            "description": "Rapportage van de Celsus Academie",
+            "stringFormat": "[url=http://www.celsusacademie.nl/downloads/{0}.pdf]Download[/url]",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "CelsusConcern": {
+            "label": "KVK_rapport",
+            "type": "bbcode",
+            "title": "Financieel en kwaliteitsrapport",
+            "description": "Rapportage van de Celsus Academie",
+            "stringFormat": "[url=http://www.celsusacademie.nl/downloads/{0}.pdf]Download[/url]",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "CelsusConcernNiet": {
+            "label": "KVK_geen_rapport",
+            "type": "text",
+            "title": "Financieel en kwaliteitsrapport",
+            "description": "Rapportage van de Celsus Academie",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Sector": {
+            "label": "Sector",
+            "type": "text",
+            "title": "Hoofdsector",
+            "description": "VVT: Verpleging Verzorging Thuiszorg; GHZ: GehandicaptenZorg; GGZ: Geestelijke GezondheidsZorg",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Ook_sector": {
+            "label": "Ook_sector",
+            "type": "text",
+            "title": "Ook sector",
+            "description": "VVT: Verpleging Verzorging Thuiszorg; GHZ: GehandicaptenZorg; GGZ: Geestelijke GezondheidsZorg",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Omzet": {
+            "label": "Omzet",
+            "type": "number",
+            "title": "Omzet",
+            "description": "Som der bedrijfsopbrengsten",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "FTE": {
+            "label": "FTE",
+            "type": "number",
+            "title": "FTE",
+            "description": "Aantal personeelsleden in loondienst per einde verslagjaar: Aantal fte",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "KvK": {
+            "label": "KvK",
+            "type": "number",
+            "title": "KvK",
+            "description": "Kamer van koophandel nummer van het concern",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Straat": {
+            "label": "Straat",
+            "type": "text",
+            "title": "Straat",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "huisnummer": {
+            "label": "huisnummer",
+            "type": "number",
+            "title": "Huisnummer",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "postcode": {
+            "label": "postcode",
+            "type": "text",
+            "title": "Postcode",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "plaatsnaam": {
+            "label": "plaatsnaam",
+            "type": "text",
+            "title": "Plaatsnaam",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Intramuraal": {
+            "label": "Intramuraal",
+            "type": "number",
+            "title": "Intramuraal",
+            "description": "Optelling aantal cliÃ«nten intramuraal",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Extramuraal": {
+            "label": "Extramuraal",
+            "type": "number",
+            "title": "Extramuraal",
+            "description": "Optelling aantal clienten extramuraal 3 sectoren. Bij GGZ geldt een benadering: aantal dagdelen dagactiviteiten / 20.",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Personeel": {
+            "label": "Personeel",
+            "type": "number",
+            "title": "Personeel",
+            "description": "Aantal personeelsleden in loondienst : Aantal personen",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "FTE_totaal": {
+            "label": "FTE_totaal",
+            "type": "number",
+            "title": "FTE totaal",
+            "description": "Aantal personeelsleden in loondienst : Aantal fte",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Omzet_2": {
+            "label": "Omzet_2",
+            "type": "number",
+            "title": "Omzet",
+            "description": "Som der bedrijfsopbrengsten - verslagjaar",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "bedrijfslasten": {
+            "label": "bedrijfslasten",
+            "type": "number",
+            "title": "Bedrijfslasten",
+            "description": "Som der bedrijfslasten - verslagjaar",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Personeelskosten": {
+            "label": "Personeelskosten",
+            "type": "number",
+            "title": "Personeelskosten",
+            "description": "Personeelskosten - verslagjaar",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Vermogen": {
+            "label": "Vermogen",
+            "type": "number",
+            "title": "Vermogen",
+            "description": "Totaal eigen vermogen - verslagjaar",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Boekwaarde": {
+            "label": "Boekwaarde",
+            "type": "number",
+            "title": "Boekwaarde",
+            "description": "Boekwaarde per 31 december (= totaal materiÃ«le vaste activa) - verslagjaar",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "%_AWBZ": {
+            "label": "%_AWBZ",
+            "type": "text",
+            "title": "% AWBZ",
+            "description": "% AWBZ budget volgens jaarrekening",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "%_ZVW": {
+            "label": "%_ZVW",
+            "type": "text",
+            "title": "% ZVW",
+            "description": "% ZVW budget volgens jaarrekening",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Liquiditeit_2011": {
+            "label": "Liquiditeit_2011",
+            "type": "text",
+            "title": "Liquiditeit 2011",
+            "description": "Liquiditeit Quick ratio verslagjaar: (totaal vlottende activa - voorraden)/Totaal overige kortlopende schulden) ; (rangorde / totaal aantal)",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Solvabiliteit_2011": {
+            "label": "Solvabiliteit_2011",
+            "type": "text",
+            "title": "Solvabiliteit 2011",
+            "description": "Solvabiliteit = eigen vermogen / totaal activa; (rangorde / totaal aantal)",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Rendement_2011": {
+            "label": "Rendement_2011",
+            "type": "text",
+            "title": "Rendement 2011",
+            "description": "Rendement verslagjaar; (rangorde / totaal aantal)",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Liquiditeit_2012": {
+            "label": "Liquiditeit_2012",
+            "type": "text",
+            "title": "Liquiditeit 2012",
+            "description": "Liquiditeit Quick ratio verslagjaar: (totaal vlottende activa - voorraden)/Totaal overige kortlopende schulden) ; (rangorde / totaal aantal)",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Solvabiliteit_2012": {
+            "label": "Solvabiliteit_2012",
+            "type": "text",
+            "title": "Solvabiliteit 2012",
+            "description": "Solvabiliteit = eigen vermogen / totaal activa; (rangorde / totaal aantal)",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Rendement_2012": {
+            "label": "Rendement_2012",
+            "type": "text",
+            "title": "Rendement 2012",
+            "description": "Rendement verslagjaar; (rangorde / totaal aantal)",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Ebitda": {
+            "label": "Ebitda",
+            "type": "text",
+            "title": "Ebitda",
+            "description": "(Resultaat uit gewone bedrijfsvoering -Afschrijvingen op immateriÃ«le en materiÃ«le vaste activa) / Som der bedrijfsopbrengsten",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "DSCR": {
+            "label": "DSCR",
+            "type": "text",
+            "title": "DSCR",
+            "description": "Debt Service Coverage Ratio:betalingscapaciteit (Debt Service) / financiÃ«le verplichtingen ",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Rangorde_overall": {
+            "label": "Rangorde_overall",
+            "type": "text",
+            "title": "Rangorde overall",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Bedrijfslasten_per_FTE": {
+            "label": "Bedrijfslasten_per_FTE",
+            "type": "number",
+            "title": "Bedrijfslasten per FTE",
+            "description": "Som der bedrijfslasten / aantal FTE",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Kosten_personeel_per_FTE": {
+            "label": "Kosten_personeel_per_FTE",
+            "type": "number",
+            "title": "Kosten personeel per FTE",
+            "description": "Personeelskosten  / aantal FTE",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Boekwaarde_per_FTE": {
+            "label": "Boekwaarde_per_FTE",
+            "type": "number",
+            "title": "Boekwaarde per FTE",
+            "description": "Boekwaarde  / aantal FTE",
+            "section": "Financieel",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Data_Bron_toegewezen_ZZP's": {
+            "label": "Data_Bron_toegewezen_ZZP's",
+            "type": "text",
+            "title": "Data Bron toegewezen ZZP's",
+            "description": "AZR / CVZ d.d. 1 januari 2014",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Totaal_ZZP": {
+            "label": "Totaal_ZZP",
+            "type": "number",
+            "title": "Totaal ZZP",
+            "description": "Totaal toegewezen intramurale indicaties Zorg Zwaarte Paketten",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "Totaal_ZZP_VV": {
+            "label": "Totaal_ZZP_VV",
+            "type": "number",
+            "title": "Totaal ZZP VV",
+            "description": "ZZP Verpleging en Verzorging",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "Totaal_ZZP_GHZ": {
+            "label": "Totaal_ZZP_GHZ",
+            "type": "number",
+            "title": "Totaal ZZP GHZ",
+            "description": "ZZP Gehandicaptenzorg",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "Totaal_ZZP_GGZ": {
+            "label": "Totaal_ZZP_GGZ",
+            "type": "number",
+            "title": "Totaal ZZP GGZ",
+            "description": "ZZP Geestelijke Gezondheidszorg",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_VV_1-2": {
+            "label": "ZZP_VV_1-2",
+            "type": "number",
+            "title": "ZZP VV 1-2",
+            "description": "Zeer lichte ZZP's Verpleging en verzorging",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_VV_3-4": {
+            "label": "ZZP_VV_3-4",
+            "type": "number",
+            "title": "ZZP VV 3-4",
+            "description": "Lichtere ZZP's Verpleging en verzorging",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_VV_5-10": {
+            "label": "ZZP_VV_5-10",
+            "type": "number",
+            "title": "ZZP VV 5-10",
+            "description": "Zwaardere ZZP's Verpleging en Verzorging",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_GHZ_1-2": {
+            "label": "ZZP_GHZ_1-2",
+            "type": "number",
+            "title": "ZZP GHZ 1-2",
+            "description": "Zeer lichte ZZP's Gehandicaptenzorg",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_GHZ_3-4": {
+            "label": "ZZP_GHZ_3-4",
+            "type": "number",
+            "title": "ZZP GHZ 3-4",
+            "description": "Lichtere ZZP's Gehandicaptenzorg",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_GHZ_5-10": {
+            "label": "ZZP_GHZ_5-10",
+            "type": "number",
+            "title": "ZZP GHZ 5-10",
+            "description": "Zwaardere ZZP's Gehandicaptenzorg",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_GGZ_1-2": {
+            "label": "ZZP_GGZ_1-2",
+            "type": "number",
+            "title": "ZZP GGZ 1-2",
+            "description": "Zeer lichte ZZP's Geestelijke Gezondheidszorg",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_GGZ_3-4": {
+            "label": "ZZP_GGZ_3-4",
+            "type": "number",
+            "title": "ZZP GGZ 3-4",
+            "description": "Lichtere ZZP's Geestelijke Gezondheidszorg",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_GGZ_5-10": {
+            "label": "ZZP_GGZ_5-10",
+            "type": "number",
+            "title": "ZZP GGZ 5-10",
+            "description": "Zwaardere ZZP's Geestelijke Gezondheidszorg",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP_onbekend": {
+            "label": "ZZP_onbekend",
+            "type": "number",
+            "title": "ZZP onbekend",
+            "description": "Toegewezen ZZP onbekende grondslag",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "_Unknown_46": {
+            "label": "_Unknown_46",
+            "type": "text",
+            "title": " Unknown 46",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Totaal_ZZP_VVT": {
+            "label": "Totaal_ZZP_VVT",
+            "type": "number",
+            "title": "Totaal ZZP VVT",
+            "description": "ZZP Verpleging en Verzorging",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "ZZP_VVT_1-2": {
+            "label": "ZZP_VVT_1-2",
+            "type": "number",
+            "title": "ZZP VVT 1-2",
+            "description": "Zeer lichte ZZP's Verpleging en Verzorging",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "ZZP_VVT_3-4": {
+            "label": "ZZP_VVT_3-4",
+            "type": "number",
+            "title": "ZZP VVT 3-4",
+            "description": "Lichtere ZZP's Verpleging en Verzorging",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "ZZP_VVT_5-10": {
+            "label": "ZZP_VVT_5-10",
+            "type": "number",
+            "title": "ZZP VVT 5-10",
+            "description": "Zwaardere ZZP's Verpleging en Verzorging",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Data_Bron": {
+            "label": "Data_Bron",
+            "type": "text",
+            "title": "Data Bron",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "KvK-nummer_van_het_concern_DigiMV_2012": {
+            "label": "KvK-nummer_van_het_concern_DigiMV_2012",
+            "type": "number",
+            "title": "KvK-nummer",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "CelsusInstelling": {
+            "label": "KvK-nummer_van_het_concern_DigiMV_2012",
+            "type": "bbcode",
+            "title": "Financieel rapport",
+            "description": "Rapportage van de Celsus Academie (met betrekking tot het concern waartoe deze instelling behoort)",
+            "stringFormat": "[url=http://www.celsusacademie.nl/downloads/{0}.pdf]Download[/url]",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Naam_van_het_concern_DigiMV_2012": {
+            "label": "Naam_van_het_concern_DigiMV_2012",
+            "type": "text",
+            "title": "Naam van het concern DigiMV 2012",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Locatiecode_AGB_soort_zorgaanbieder": {
+            "label": "Locatiecode_AGB_soort_zorgaanbieder",
+            "type": "number",
+            "title": "Locatiecode AGB soort zorgaanbieder",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "soort_zorgaanbieder": {
+            "label": "soort_zorgaanbieder",
+            "type": "text",
+            "title": "Soort zorgaanbieder",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Locatiecode_AGB": {
+            "label": "Locatiecode_AGB",
+            "type": "number",
+            "title": "Locatiecode AGB",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Adres": {
+            "label": "Adres",
+            "type": "text",
+            "title": "Adres",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "plaats": {
+            "label": "plaats",
+            "type": "text",
+            "title": "Plaats",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Postcode_4": {
+            "label": "Postcode_4",
+            "type": "number",
+            "title": "Postcode 4",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Postcode_Letters": {
+            "label": "Postcode_Letters",
+            "type": "text",
+            "title": "Postcode Letters",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Huisnummer": {
+            "label": "Huisnummer",
+            "type": "number",
+            "title": "Huisnummer",
+            "section": "Adres",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Gemeentecode": {
+            "label": "Gemeentecode",
+            "type": "number",
+            "title": "Gemeentecode",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "HLZ-regio": {
+            "label": "HLZ-regio",
+            "type": "text",
+            "title": "HLZ-regio",
+            "section": "Regio",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "HLZ_regiocode": {
+            "label": "HLZ_regiocode",
+            "type": "text",
+            "title": "HLZ regiocode",
+            "section": "Regio",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "WMO-regio": {
+            "label": "WMO-regio",
+            "type": "text",
+            "title": "WMO-regio",
+            "section": "Regio",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "WMO_regiocode": {
+            "label": "WMO_regiocode",
+            "type": "text",
+            "title": "WMO regiocode",
+            "section": "Regio",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Zorgkantoorregio": {
+            "label": "Zorgkantoorregio",
+            "type": "text",
+            "title": "Zorgkantoorregio",
+            "section": "Regio",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Zorgkantoorcode": {
+            "label": "Zorgkantoorcode",
+            "type": "number",
+            "title": "Zorgkantoorcode",
+            "section": "Regio",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Zorgkantoor_Rechtspersoon": {
+            "label": "Zorgkantoor_Rechtspersoon",
+            "type": "text",
+            "title": "Zorgkantoor Rechtspersoon",
+            "section": "Regio",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Rechtspersoon": {
+            "label": "Rechtspersoon",
+            "type": "text",
+            "title": "Rechtspersoon",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Provincie": {
+            "label": "Provincie",
+            "type": "text",
+            "title": "Provincie",
+            "section": "Adres",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Provinciecode": {
+            "label": "Provinciecode",
+            "type": "text",
             "title": "Provinciecode",
-            "section": "Info",
+            "section": "Adres",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false
+        },
+        "Sector_VVT": {
+            "label": "Sector_VVT",
             "type": "text",
-            "visibleInCallOut": true,
-            "canEdit": true
-        },
-        "a_apb_onb": {
-            "linkedFeature": "p_apb_onb",
-            "label": "a_apb_onb",
-            "type": "number",
-            "title": "Aant. aanpasbaarheid onbekend",
-            "description": "Aantal aanpasbaarheid onbekend",
-            "expression": "(properties.ster_onb || 0) + (properties.ster_in_ond || 0)",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "isSearchable": false
-        },
-        "a_apb_in_ond": {
-            "linkedFeature": "p_apb_in_ond",
-            "label": "a_apb_in_ond",
-            "type": "number",
-            "title": "Aant. in onderzoek",
-            "description": "Aantal aanpasbaarheid in onderzoek",
-            "expression": "properties.ster_in_ond || 0",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}",
+            "title": "Sector VVT",
             "visibleInCallOut": false,
+            "canEdit": true,
             "isSearchable": false
         },
-        "a_apb_w": {
-            "linkedFeature": "p_apb_w",
-            "label": "a_apb_w",
-            "type": "number",
-            "title": "Aant. aanpasbare woningen",
-            "description": "Aantal aanpasbare woningen",
-            "expression": "(properties.ster_2 || 0) + (properties.ster_3 || 0)",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "isSearchable": false
-        },
-        "a_napb_w": {
-            "linkedFeature": "p_napb_w",
-            "label": "a_napb_w",
-            "type": "number",
-            "title": "Aant. niet-aanpasbare woningen",
-            "description": "Aantal niet-aanpasbare woningen",
-            "expression": "(properties.ster_0 || 0) + (properties.ster_1 || 0)",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "isSearchable": false
-        },
-        "a_aangep_w": {
-            "linkedFeature": "p_aangep_w",
-            "label": "a_aangep_w",
-            "type": "number",
-            "title": "Aant. aangepaste woningen",
-            "description": "Aantal aangepaste woningen",
-            "expression": "(properties.ster_4 || 0) + (properties.ster_5 || 0)",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}",
-            "visibleInCallOut": true,
-            "isSearchable": false
-        },
-        "p_apb_w": {
-            "label": "p_apb_w",
-            "type": "number",
-            "title": "Percentage aanpasbare woningen",
-            "expression": "properties.a_apb_w / properties.ster_totaal * 100",
-            "description": "Percentage aanpasbare woningen",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}%",
-            "min": 0,
-            "max": 100,
+        "Sector_GHZ": {
+            "label": "Sector_GHZ",
+            "type": "text",
+            "title": "Sector GHZ",
             "visibleInCallOut": false,
+            "canEdit": true,
             "isSearchable": false
         },
-        "p_napb_w": {
-            "label": "p_napb_w",
-            "type": "number",
-            "title": "Perc. niet-aanpasbare woningen",
-            "description": "Percentage niet-aanpasbare woningen",
-            "expression": "properties.a_napb_w / properties.ster_totaal * 100",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}%",
-            "min": 0,
-            "max": 100,
-            "visibleInCallOut": true,
-            "isSearchable": false
-        },
-        "p_apb_onb": {
-            "label": "p_apb_onb",
-            "type": "number",
-            "title": "Perc. aanpasbaarheid onbekend",
-            "description": "Percentage aanpasbaarheid onbekend",
-            "expression": "(properties.a_apb_in_ond + properties.a_apb_onb) / properties.ster_totaal * 100 || 0",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}%",
-            "min": 0,
-            "max": 100,
-            "visibleInCallOut": true,
-            "isSearchable": false
-        },
-        "p_apb_in_ond": {
-            "label": "p_apb_in_ond",
-            "type": "number",
-            "title": "Perc. aanpasbaarheid in onderzoek",
-            "description": "Percentage aanpasbaarheid in onderzoek",
-            "expression": "properties.a_apb_in_ond / properties.ster_totaal * 100 || 0",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}%",
-            "min": 0,
-            "max": 100,
+        "Sector_GGZ": {
+            "label": "Sector_GGZ",
+            "type": "text",
+            "title": "Sector GGZ",
             "visibleInCallOut": false,
+            "canEdit": true,
             "isSearchable": false
         },
-        "p_aangep_w": {
-            "label": "p_aangep_w",
+        "1VV": {
+            "label": "1VV",
             "type": "number",
-            "title": "Perc. aangepaste woningen",
-            "description": "Percentage aangepaste woningen",
-            "expression": "properties.a_aangep_w / properties.ster_totaal * 100",
-            "section": "Indicatie aanpasbaarheid",
-            "stringFormat": "{0:#,#}%",
-            "min": 0,
-            "max": 100,
+            "title": "1VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
-            "isSearchable": false
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
         },
-        "p_1gezw": {
-            "label": "p_1gezw",
+        "2VV": {
+            "label": "2VV",
             "type": "number",
-            "title": "Perc. eengezinswoningen",
-            "description": "Percentage eengezinswoningen",
-            "section": "Woningtype",
-            "stringFormat": "{0:#,#}%",
-            "expression": "(properties.a_1gezw / properties.ster_totaal) * 100",
+            "title": "2VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
-            "isSearchable": false
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
         },
-        "p_mgezw": {
-            "label": "p_mgezw",
+        "3VV": {
+            "label": "3VV",
             "type": "number",
-            "title": "Perc. meergezinswoningen",
-            "description": "Percentage meergezinswoningen",
-            "section": "Woningtype",
-            "stringFormat": "{0:#,#}%",
-            "expression": "(properties.a_mgezw / properties.ster_totaal) * 100",
+            "title": "3VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
-            "isSearchable": false
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
         },
-        "p_koopwon": {
-            "label": "p_koopwon",
+        "4VV": {
+            "label": "4VV",
             "type": "number",
-            "title": "Perc. koopwoningen",
-            "description": "Percentage koopwoningen",
-            "expression": "(properties.a_koopwon / properties.ster_totaal) * 100",
-            "section": "Eigendom",
-            "stringFormat": "{0:#,#}%",
+            "title": "4VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
-            "isSearchable": false
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
         },
-        "p_huurwon": {
-            "label": "p_huurwon",
+        "5VV": {
+            "label": "5VV",
             "type": "number",
-            "title": "Perc. huurwoningen",
-            "description": "Percentage huurwoningen",
-            "expression": "(properties.a_huurwon / properties.ster_totaal) * 100",
-            "section": "Eigendom",
-            "stringFormat": "{0:#,#}%",
+            "title": "5VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
-            "isSearchable": false
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
         },
-        "p_huko_onb": {
-            "label": "p_huko_onb",
+        "6VV": {
+            "label": "6VV",
             "type": "number",
-            "title": "Perc. eigendom onbekend",
-            "description": "Percentage eigendom onbekend",
-            "expression": "(properties.a_huko_onb / properties.ster_totaal) * 100",
-            "section": "Eigendom",
-            "stringFormat": "{0:#,#}%",
+            "title": "6VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "7VV": {
+            "label": "7VV",
+            "type": "number",
+            "title": "7VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "8VV": {
+            "label": "8VV",
+            "type": "number",
+            "title": "8VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "9VV": {
+            "label": "9VV",
+            "type": "number",
+            "title": "9VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "9VVA": {
+            "label": "9VVA",
+            "type": "number",
+            "title": "9VVA",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "9VVB": {
+            "label": "9VVB",
+            "type": "number",
+            "title": "9VVB",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "10VV": {
+            "label": "10VV",
+            "type": "number",
+            "title": "10VV",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "1LG": {
+            "label": "1LG",
+            "type": "number",
+            "title": "1LG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "2LG": {
+            "label": "2LG",
+            "type": "number",
+            "title": "2LG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "3LG": {
+            "label": "3LG",
+            "type": "number",
+            "title": "3LG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "4LG": {
+            "label": "4LG",
+            "type": "number",
+            "title": "4LG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "5LG": {
+            "label": "5LG",
+            "type": "number",
+            "title": "5LG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "6LG": {
+            "label": "6LG",
+            "type": "number",
+            "title": "6LG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "7LG": {
+            "label": "7LG",
+            "type": "number",
+            "title": "7LG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "1VG": {
+            "label": "1VG",
+            "type": "number",
+            "title": "1VG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "2VG": {
+            "label": "2VG",
+            "type": "number",
+            "title": "2VG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "3VG": {
+            "label": "3VG",
+            "type": "number",
+            "title": "3VG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "4VG": {
+            "label": "4VG",
+            "type": "number",
+            "title": "4VG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "5VG": {
+            "label": "5VG",
+            "type": "number",
+            "title": "5VG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "6VG": {
+            "label": "6VG",
+            "type": "number",
+            "title": "6VG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "7VG": {
+            "label": "7VG",
+            "type": "number",
+            "title": "7VG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "8VG": {
+            "label": "8VG",
+            "type": "number",
+            "title": "8VG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "1SGLVG": {
+            "label": "1SGLVG",
+            "type": "number",
+            "title": "1SGLVG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "1LVG": {
+            "label": "1LVG",
+            "type": "number",
+            "title": "1LVG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "2LVG": {
+            "label": "2LVG",
+            "type": "number",
+            "title": "2LVG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "3LVG": {
+            "label": "3LVG",
+            "type": "number",
+            "title": "3LVG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "4LVG": {
+            "label": "4LVG",
+            "type": "number",
+            "title": "4LVG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "5LVG": {
+            "label": "5LVG",
+            "type": "number",
+            "title": "5LVG",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "1ZGaud": {
+            "label": "1ZGaud",
+            "type": "number",
+            "title": "1ZGaud",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "2ZGaud": {
+            "label": "2ZGaud",
+            "type": "number",
+            "title": "2ZGaud",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "3ZGaud": {
+            "label": "3ZGaud",
+            "type": "number",
+            "title": "3ZGaud",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "4ZGaud": {
+            "label": "4ZGaud",
+            "type": "number",
+            "title": "4ZGaud",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "1ZGvis": {
+            "label": "1ZGvis",
+            "type": "number",
+            "title": "1ZGvis",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "2ZGvis": {
+            "label": "2ZGvis",
+            "type": "number",
+            "title": "2ZGvis",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "3ZGvis": {
+            "label": "3ZGvis",
+            "type": "number",
+            "title": "3ZGvis",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "4ZGvis": {
+            "label": "4ZGvis",
+            "type": "number",
+            "title": "4ZGvis",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "5ZGvis": {
+            "label": "5ZGvis",
+            "type": "number",
+            "title": "5ZGvis",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "1GGZ_B": {
+            "label": "1GGZ_B",
+            "type": "number",
+            "title": "1GGZ B",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "2GGZ_B": {
+            "label": "2GGZ_B",
+            "type": "number",
+            "title": "2GGZ B",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "3GGZ_B": {
+            "label": "3GGZ_B",
+            "type": "number",
+            "title": "3GGZ B",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "4GGZ_B": {
+            "label": "4GGZ_B",
+            "type": "number",
+            "title": "4GGZ B",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "5GGZ_B": {
+            "label": "5GGZ_B",
+            "type": "number",
+            "title": "5GGZ B",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "6GGZ_B": {
+            "label": "6GGZ_B",
+            "type": "number",
+            "title": "6GGZ B",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "7GGZ_B": {
+            "label": "7GGZ_B",
+            "type": "number",
+            "title": "7GGZ B",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "1GGZ_C": {
+            "label": "1GGZ_C",
+            "type": "number",
+            "title": "1GGZ C",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "2GGZ_C": {
+            "label": "2GGZ_C",
+            "type": "number",
+            "title": "2GGZ C",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "3GGZ_C": {
+            "label": "3GGZ_C",
+            "type": "number",
+            "title": "3GGZ C",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "4GGZ_C": {
+            "label": "4GGZ_C",
+            "type": "number",
+            "title": "4GGZ C",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "5GGZ_C": {
+            "label": "5GGZ_C",
+            "type": "number",
+            "title": "5GGZ C",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "6GGZ_C": {
+            "label": "6GGZ_C",
+            "type": "number",
+            "title": "6GGZ C",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZP0": {
+            "label": "ZZP0",
+            "type": "number",
+            "title": "ZZP0",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "ZZPX": {
+            "label": "ZZPX",
+            "type": "number",
+            "title": "ZZPX",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "Totaal": {
+            "label": "Totaal",
+            "type": "number",
+            "title": "Totaal",
+            "section": "ZZP",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 5
+        },
+        "toevoeging_huisnummer": {
+            "label": "toevoeging_huisnummer",
+            "type": "text",
+            "title": "Toevoeging huisnummer",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": false,
+            "canEdit": true,
             "isSearchable": false
         },
-        "instroom": {
-            "label": "instroom",
-            "title": "Procentuele instroom mobiliteitsbeperkten per jaar",
-            "stringFormat": "{0:#,#.###}%",
-            "type": "number",
-            "visibleInCallOut": true
+        "Rendement_gemiddelde_van_2_jaar": {
+            "label": "Rendement_gemiddelde_van_2_jaar",
+            "type": "text",
+            "title": "Rendement (gemiddelde van 2 jaar)",
+            "description": "Rendement  gemiddeld over twee jaar; (rangorde / totaal aantal)",
+            "section": "Financieel",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false
         },
-        "ster3_inw": {
-            "label": "ster3_inw",
-            "title": "Aandeel van ster 3 woningen van de woningvoorraad",
-            "stringFormat": "{0:#,#.###}%",
+        "Aantal_appartementen": {
+            "label": "Aantal_appartementen",
             "type": "number",
-            "visibleInCallOut": true
+            "title": "Aantal appartementen",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 0
         },
-        "aanp_kost_wmo": {
-            "label": "aanp_kost_wmo",
-            "title": "Aandeel van de aanpassingskosten in het Wmo integratie-budget",
-            "stringFormat": "{0:#,#.##}%",
-            "type": "number",
-            "visibleInCallOut": true
+        "Bouwjaar": {
+            "label": "Bouwjaar",
+            "type": "text",
+            "title": "Bouwjaar",
+            "stringFormat": "{0:0,0}",
+            "visibleInCallOut": true,
+            "canEdit": true,
+            "isSearchable": false,
+            "minValue": 0
         },
-        "wmo-budg": {
-            "label": "wmo-budg",
-            "title": "Wmo integratiebudget per inwoner",
-            "stringFormat": "{0:#,#.##}€",
+        "Altitude": {
+            "label": "Altitude",
             "type": "number",
-            "visibleInCallOut": true
+            "title": "Altitude",
+            "canEdit": false,
+            "visibleInCallOut": true,
+            "$$hashKey": "object:763"
         },
-        "p_65p": {
-            "label": "p_65p",
-            "title": "Aandeel 65+'ers van de inwoners",
+        "Speed": {
+            "label": "Speed",
             "type": "number",
-            "stringFormat": "{0:#,#.###}%",
-            "visibleInCallOut": true
+            "title": "Speed",
+            "canEdit": false,
+            "visibleInCallOut": true,
+            "$$hashKey": "object:762"
+        },
+        "Track": {
+            "label": "Track",
+            "type": "number",
+            "title": "Track",
+            "canEdit": false,
+            "visibleInCallOut": true,
+            "$$hashKey": "object:764"
+        },
+        "PlaneType": {
+            "label": "PlaneType",
+            "type": "text",
+            "title": "PlaneType",
+            "canEdit": false,
+            "visibleInCallOut": true,
+            "isSearchable": true
         }
-    },
-    "id": "cbs",
-    "propertyTypes": {}
+    }
 }

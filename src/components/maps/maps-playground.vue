@@ -117,6 +117,12 @@ export default class MapsPlayground extends WidgetBase {
           _key: "showBuildings",
           type: "checkbox",
           group: "map"
+        },
+        {
+          title: "Show Legend",
+          _key: "showLegend",
+          type: "checkbox",
+          group: "map"
         }
       ]
     };
@@ -240,10 +246,6 @@ export default class MapsPlayground extends WidgetBase {
         ]
       }
     );
-  }
-
-  zoomToRandom() {
-    this.MapControl.zoomTo(13);
   }
 }
 </script>
