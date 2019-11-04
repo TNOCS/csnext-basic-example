@@ -8,18 +8,20 @@
           <v-list-item-subtitle>{{example.description}}</v-list-item-subtitle>
         </v-list-item-content>
 
-        <v-list-item-avatar tile size="80" color="grey"></v-list-item-avatar>
+        <v-list-item-avatar tile height="60"><v-img v-if="example.image" :src="example.image"></v-img></v-list-item-avatar>
       </v-list-item>
 
       <v-card-actions>
         
           <v-btn
             outlined
+            
 
             v-for="action in example.actions"
-            @click="action.callback"
+            @click="action.callback(action)"
             :icon="action.icon !== undefined"
             :key="action.title"
+            :loading="action.loading"
           >
           <v-icon v-if="action.icon">{{action.icon}}</v-icon>
           <span v-if="!action.icon">{{action.title}}</span></v-btn>        
@@ -43,14 +45,16 @@ import { IProject, IMenu, IFormOptions, IWidget } from "@csnext/cs-core";
 
 export class ExampleAction {
   public title?: string;
-  public icon?: string;
-  public callback?: () => void;
+  public icon?: string;  
+  public loading?: boolean;
+  public callback?: (a: ExampleAction) => void;
 }
 
 export class Example {
   public category?: string;
   public title?: string;  
   public description?: string;
+  public image?: string;  
   public actions?: ExampleAction[];
 }
 

@@ -19,7 +19,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { WidgetBase, AppState } from "@csnext/cs-client";
 import { IProject, IMenu, IFormOptions, IWidget } from "@csnext/cs-core";
 import { CsForm } from "@csnext/cs-form";
-import ExamplesList, { Example } from "./examples-list.vue";
+import ExamplesList, { Example, ExampleAction } from "./examples-list.vue";
 import {
   LayerSource,
   MapDatasource,
@@ -69,7 +69,7 @@ export default class LayersPlayground extends WidgetBase {
         { title: "add layer", icon: 'add', callback: this.addSimpleGeojsonLayer },
         {
           title: "remove layer", icon: 'remove',
-          callback: () => {
+          callback: (a: ExampleAction) => {
             if (this.mapDatasource) {
               this.mapDatasource.removeLayer(this.pointLayerId);
             }
@@ -77,7 +77,7 @@ export default class LayersPlayground extends WidgetBase {
         },
         {
           title: "edit layer", icon: 'edit',
-          callback: () => {
+          callback: (a: ExampleAction) => {
             if (this.mapDatasource) {
               this.mapDatasource.editLayer(this.pointLayerId);
             }
@@ -120,7 +120,8 @@ export default class LayersPlayground extends WidgetBase {
               this.mapDatasource.addGeojsonLayer(
                 "world cities",
                 "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places.geojson",
-                {
+                {  
+                  title: "{{properties.NAME}}",
                   popup: "{{properties.NAME}}, {{properties.ADM0NAME}}",
                   mapbox: {
                     circlePaint: {
@@ -156,10 +157,12 @@ export default class LayersPlayground extends WidgetBase {
     this.examples.push({
       category: "geojson",
       title: "CBS gemeenten",
+      image: 'images/cbs.png',
       actions: [
         {
           title: "add layer", icon: 'add',
-          callback: () => {
+          callback: (a) => {
+            a.loading = true;
             if (this.mapDatasource) {
               this.mapDatasource.addGeojsonLayer(
                 "cbs gemeenten",
@@ -168,7 +171,9 @@ export default class LayersPlayground extends WidgetBase {
                 ["cbs"],
                 "meta/cbs.json", 
                 "default"
-              );
+              ).then( r => {
+                a.loading = false;
+              })
             }
           }
         },
@@ -225,10 +230,12 @@ export default class LayersPlayground extends WidgetBase {
       .catch(e => {});
   }
 
-  addSimpleGeojsonLayer() {
+  addSimpleGeojsonLayer(m: ExampleAction) {
     if (!this.mapDatasource) {
       return;
     }
+
+    // m.loading = true;
 
     this.mapDatasource
       .addGeojsonLayer(this.pointLayerId, "geojson/monumentaal_groen.json", {
@@ -244,6 +251,7 @@ export default class LayersPlayground extends WidgetBase {
       .then(l => {
         this.simpleLayer = l;
         this.mapDatasource!.zoomLayer(l);
+        // m.loading = false;
       })
       .catch(e => {});
   }

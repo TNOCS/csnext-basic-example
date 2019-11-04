@@ -3,13 +3,17 @@
         "gemeente": {
             "name": "gemeente",
             "style": {
+                "icon": "images/cbs.png",
+                "defaultLegendProperty": "aant_inw",
                 "popup": "{{properties.gemeentenaam}}",
                 "mapbox": {
                     "fillPaint": {
-                        "fill-color": "red"
+                        "fill-color": "red",
+                        "fill-opacity": 0.5
                     }
-                },
-                "fill": true
+                },                
+                "fill": true,
+                "title": "{{properties.Name}}"
             },
             "style2": {
                 "fillColor": "#dfd5b2",
@@ -75,7 +79,7 @@
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": true,
             "canEdit": true,
-            "isSearchable": false,
+            "isSearchable": false
         },
         "p_00_14_jr": {
             "label": "p_00_14_jr",
@@ -666,7 +670,7 @@
         "af_oprith": {
             "label": "af_oprith",
             "type": "number",
-            "title": "Af oprith",
+            "title": "Afstand tot oprit hoofdverkeersweg [km]",
             "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
@@ -676,7 +680,7 @@
         "af_treinst": {
             "label": "af_treinst",
             "type": "number",
-            "title": "Af treinst",
+            "title": "Afstand tot treinstation [km]",
             "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
@@ -686,7 +690,8 @@
         "af_overst": {
             "label": "af_overst",
             "type": "number",
-            "title": "Af overst",
+            "title": "Afstand tot belangrijk overstapstation [km]",
+            "description": "De gemiddelde afstand van alle inwoners in een gebied tot het dichtstbijzijnde belangrijke overstapstation, berekend over de weg.",
             "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,
@@ -696,7 +701,7 @@
         "af_biblio": {
             "label": "af_biblio",
             "type": "number",
-            "title": "Af biblio",
+            "title": "Afstand tot bibliotheek [km]",
             "section": "CBS",
             "stringFormat": "{0:0,0}",
             "visibleInCallOut": false,

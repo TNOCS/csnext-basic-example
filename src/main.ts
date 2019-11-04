@@ -49,7 +49,7 @@ AppState.Instance.init({
       background: {
         id: 'info',
         icon: 'info',
-        layout: GridLayout.id,        
+        layout: GridLayout.id,
         manager: InfoDashboardManager.id,
         options: {
           showToolbar: false,
@@ -57,7 +57,7 @@ AppState.Instance.init({
             code: 'F2'
           }
         },
-        widgets: [{ component: CsInfo, id: 'search', data: 'testje'}]
+        widgets: [{ component: CsInfo, id: 'search', data: 'testje' }]
       } as IDashboard
     }
   },
@@ -80,7 +80,9 @@ AppState.Instance.init({
       path: '/',
       info: {
         title: 'Intro',
+
         markdownUrl: 'https://raw.githubusercontent.com/TNOCS/csnext/master/packages/cs-docs/docs/README.md'
+
       },
       widgets: [
         {
