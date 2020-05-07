@@ -1,0 +1,39 @@
+{
+    "featureTypes": {
+        "gemeente": {
+            "name": "ziekenhuis",
+            "style": {                
+                "defaultLegendProperty": "Hartbewaking",             
+                "title": "{{properties.naam}}",
+                "mapbox": {
+                    "symbolLayout": {
+                        "icon-image": "images/cure_ziekenhuisconcerns.png"
+                    },
+                    "circlePaint": {
+                        "circle-radius": 15,
+                        "circle-color": "blue"
+                    }
+                },
+                "pointCircle": true
+            }
+        }
+    },
+    "propertyTypeData": {
+        "naam": {
+            "type": "text",
+            "title": "Naam"
+        },        
+        "Aantal bedden": {
+            "label": "Aantal bedden",
+            "title": "Aantal bedden",
+            "type": "number",
+            "section": "Bedden"
+        },
+        "Hartbewaking": {
+            "label": "Hartbewaking",
+            "type": "number",
+            "title": "Spoedeisende hulp",
+            "section": "Bedden"
+        }
+    }
+}
