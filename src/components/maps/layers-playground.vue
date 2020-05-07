@@ -1,8 +1,8 @@
 <template>
-  <v-container v-if="mapWidget">
+  <v-container>
     <h1>Layer Examples</h1>
 
-    <examples-list :examples="examples"></examples-list>
+    <examples-list :examples="examples" ></examples-list>
   </v-container>
 </template>
 
@@ -38,7 +38,6 @@ import { FeatureCollection } from "geojson";
 export default class LayersPlayground extends WidgetBase {
   public project!: IProject;
   public mapDatasource: MapDatasource | null = null;
-  public mapWidget?: IWidget | null = null;
   public examples: Example[] = [];
   public simpleLayer?: IMapLayer;
   public polygonLayer?: IMapLayer;
@@ -54,13 +53,6 @@ export default class LayersPlayground extends WidgetBase {
 
   contentLoaded(ms: MapDatasource) {
     this.mapDatasource = ms;
-  }
-
-  mounted() {
-    // find csmap widget
-    this.mapWidget = AppState.Instance.findWidget(
-      "layers-map-playground-widget"
-    );
     this.examples.push({
       category: "geojson",
       title: "Add points layer",
@@ -72,14 +64,6 @@ export default class LayersPlayground extends WidgetBase {
           callback: (a: ExampleAction) => {
             if (this.mapDatasource) {
               this.mapDatasource.removeLayer(this.pointLayerId);
-            }
-          }
-        },
-        {
-          title: "edit layer", icon: 'edit',
-          callback: (a: ExampleAction) => {
-            if (this.mapDatasource) {
-              this.mapDatasource.editLayer(this.pointLayerId);
             }
           }
         }
@@ -98,15 +82,7 @@ export default class LayersPlayground extends WidgetBase {
               this.mapDatasource.removeLayer(this.polygonLayerId);
             }
           }
-        },
-        {
-          title: "edit layer", icon: 'edit',
-          callback: () => {
-            if (this.mapDatasource) {
-              this.mapDatasource.editLayer(this.polygonLayerId);
-            }
-          }
-        }
+        }       
       ]
     });
     this.examples.push({
@@ -142,15 +118,35 @@ export default class LayersPlayground extends WidgetBase {
               this.mapDatasource.removeLayer("world cities");
             }
           }
-        },
+        }        
+      ]
+    });
+
+    this.examples.push({
+      category: "geojson",
+      title: "Ziekenhuizen",
+      actions: [
         {
-          title: "edit layer", icon: 'edit',
+          title: "add layer", icon: 'add',
           callback: () => {
             if (this.mapDatasource) {
-              this.mapDatasource.editLayer("world cities");
+              this.mapDatasource.addGeojsonLayer(
+                "ziekenhuizen",
+                "geojson/ziekenhuis.json",
+                undefined,                
+                "meta/ziekenhuizen.json", 
+              );
             }
           }
-        }
+        },
+        {
+          title: "remove layer", icon: 'remove',
+          callback: () => {
+            if (this.mapDatasource) {
+              this.mapDatasource.removeLayer("ziekenhuizen");
+            }
+          }
+        }        
       ]
     });
 
@@ -166,13 +162,22 @@ export default class LayersPlayground extends WidgetBase {
             if (this.mapDatasource) {
               this.mapDatasource.addGeojsonLayer(
                 "cbs gemeenten",
-                "geojson/gemeente.json",
-                undefined,
-                ["cbs"],
-                "meta/cbs.json", 
-                "default"
+                "geojson/gemeente.json", {
+                  type: 'fill',
+                  title: '{{properties.Name}}',
+                  mapbox: {
+                    fillPaint: {
+                      "fill-color": "blue",
+                      "fill-opacity": 0.75
+                    }
+                  }
+                },        
+                "meta/cbs.json",                 
               ).then( r => {
-                a.loading = false;
+                a.loading = false;                
+                // r.setFilter(["all", [">", "p_65_eo_jr", 10], ["<", "p_65_eo_jr", 20]]);
+                console.log('Filter');
+                console.log(r);
               })
             }
           }
@@ -184,15 +189,7 @@ export default class LayersPlayground extends WidgetBase {
               this.mapDatasource.removeLayer("cbs gemeenten");
             }
           }
-        },
-        {
-          title: "edit layer", icon: 'edit',
-          callback: () => {
-            if (this.mapDatasource) {
-              this.mapDatasource.editLayer("cbs gemeenten");
-            }
-          }
-        },
+        },        
         {
           title: "layer details", icon: 'list',
           callback: () => {
@@ -203,6 +200,11 @@ export default class LayersPlayground extends WidgetBase {
         }
       ]
     });
+  }
+
+  mounted() {
+    // find csmap widget
+    
   }
 
   addPolygonGeojsonLayer() {

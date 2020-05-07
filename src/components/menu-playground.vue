@@ -99,11 +99,11 @@ export default class MenuPlayground extends WidgetBase {
       icon: "invert_colors",
 
       action: m => {
-        AppState.Instance.project.theme!.dark = !AppState.Instance.project
+        $cs.project.theme!.dark = !$cs.project
           .theme!.dark;
       }
     };
-    AppState.Instance.AddMenu(this.iconMenuItem);
+    $cs.addMenu(this.iconMenuItem);
 
     this.componentMenuItem = {
       id: "compoment",
@@ -115,12 +115,12 @@ export default class MenuPlayground extends WidgetBase {
       color: "red",
       component: TestComponent
     };
-    AppState.Instance.AddMenu(this.componentMenuItem);
+    $cs.addMenu(this.componentMenuItem);
   }
 
   beforeDestroy() {
-    AppState.Instance.RemoveMenu(this.iconMenuItem.id!);
-    AppState.Instance.RemoveMenu(this.componentMenuItem.id!);
+    $cs.removeMenu(this.iconMenuItem.id!);
+    $cs.removeMenu(this.componentMenuItem.id!);
   }
 }
 </script>

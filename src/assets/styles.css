@@ -2,6 +2,10 @@
   background: red;
 }
 
+body {
+  overflow: hidden;
+}
+
 .widget-green {
   background: green;
 }

@@ -10,8 +10,7 @@ module.exports = {
         Vue: 'vue/dist/vue.esm.js'
       }
     },
-    module: {
-      
+    module: {      
     }
   }
 };

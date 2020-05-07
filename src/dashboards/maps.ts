@@ -24,12 +24,13 @@ export const maps = {
                     options: {
                         area: 'left',
                         class: 'data-map-container',
-                        token: 'pk.eyJ1IjoiZGFteWxlbiIsImEiOiJjazFqN2ljNzYwMTJlM2xucGV3enJvYjE4In0.kArBU3x7YIy3DhfyQhtSGw',
+                        token: 'pk.eyJ1IjoiYWVzcWUiLCJhIjoiY2lmNGVxYnNnMDNrenJya2xzbmQ4M281bCJ9.GfMJ8R2NX1dDcc9Hs2PO3A',
                         mbOptions: {
                             style:  'mapbox://styles/mapbox/light-v10',
                             center: [4.799119, 52.478137],
                             zoom: 13
                         } as MapboxOptions,
+                        doubleClickZoom: true,
                         showBuildings: false,
                         showDraw: true,
                         showRuler: true,
@@ -65,7 +66,7 @@ export const maps = {
                     options: {
                         area: 'right',
                         class: 'data-map-container',
-                        token: 'pk.eyJ1IjoiZGFteWxlbiIsImEiOiJjazFqN2ljNzYwMTJlM2xucGV3enJvYjE4In0.kArBU3x7YIy3DhfyQhtSGw',
+                        token: 'pk.eyJ1IjoiYWVzcWUiLCJhIjoiY2lmNGVxYnNnMDNrenJya2xzbmQ4M281bCJ9.GfMJ8R2NX1dDcc9Hs2PO3A',
                         mbOptions: {
                             style: 'mapbox://styles/mapbox/light-v10',
                             center: [4.799119, 52.478137],
@@ -79,7 +80,8 @@ export const maps = {
                         showGeocoder: false,
                         showTraffic: false,
                         showLegend: true,
-                        showLayers: true
+                        showLayers: true,
+                        showLayersWidget: true
                     } as MapOptions
                 },
                 {

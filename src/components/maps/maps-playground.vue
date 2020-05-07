@@ -47,7 +47,7 @@ export default class MapsPlayground extends WidgetBase {
 
   mounted() {
     // find csmap widget
-    this.mapWidget = AppState.Instance.findWidget("map-playground-widget");
+    this.mapWidget = $cs.findWidget("map-playground-widget");
 
     this.mapOptionsForm = {
       title: "Map Options",
@@ -95,10 +95,22 @@ export default class MapsPlayground extends WidgetBase {
           group: "tools"
         },
         {
-          title: "Show Layers",
+          title: "Show Layers Sidebar",
           _key: "showLayers",
           type: "checkbox",
-          group: "navigation"
+          group: "sidebars"
+        },
+        {
+          title: "Show Feature Details Sidebar",
+          _key: "showFeatureDetails",
+          type: "checkbox",
+          group: "sidebars"
+        },
+                {
+          title: "Show Feature List Sidebar",
+          _key: "showFeatureList",
+          type: "checkbox",
+          group: "sidebars"
         },
         {
           title: "Show Geolocator",
@@ -123,6 +135,36 @@ export default class MapsPlayground extends WidgetBase {
           _key: "showLegend",
           type: "checkbox",
           group: "map"
+        },
+        {
+          title: "Show Layers Widget",
+          _key: "showLayersWidget",
+          type: "checkbox",
+          group: "widgets"
+        },
+        {
+          title: "Double Click Zoom",
+          _key: "doubleClickZoom",
+          type: "checkbox",
+          group: "interaction"
+        },        
+        {
+          title: "Box Zoom",
+          _key: "boxZoom",
+          type: "checkbox",
+          group: "interaction"
+        },        
+        {
+          title: "Scroll Zoom",
+          _key: "scrollZoom",
+          type: "checkbox",
+          group: "interaction"
+        },
+          {
+          title: "Drag Pan",
+          _key: "dragPan",
+          type: "checkbox",
+          group: "interaction"
         }
       ]
     };

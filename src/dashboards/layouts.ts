@@ -1,15 +1,119 @@
+import { CsForm } from '@csnext/cs-form';
 import { HtmlWidget, GridLayout, CardWidgetOptions, Single, CssGrid, LayoutManager } from "@csnext/cs-client";
-import { IDashboard, CssGridWidgetOptions, CssGridDashboardOptions, IDashboardOptions } from '@csnext/cs-core'
+import { IDashboard, CssGridWidgetOptions, CssGridDashboardOptions, IDashboardOptions, WidgetOptions } from '@csnext/cs-core'
 import { SplitPanelOptions, SplitPanel } from '@csnext/cs-split-panel';
 import { DragLayout, DragLayoutOptions } from '@csnext/cs-drag-grid'
+// import DragGridWidget from '../components/layout/drag-grid-widget.vue';
+import Vue from 'vue';
 
 // register split panel & drag layout manager
 LayoutManager.addLayoutManager(DragLayout);
 LayoutManager.addLayoutManager(SplitPanel);
 
+let dragOptions = new DragLayoutOptions({
+    DragEnabled: true,
+    ResizeEnabled: true,
+    IsMirrored: false,
+    ColNum: 12,
+    RowHeight: 150,
+    AutoSize: true,
+    VerticalCompact: true,
+    HorizontalMargin: 10,
+    VerticalMargin: 10,
+    save: (d: any) => {
+        Vue.set(dragDashboard, 'options', dragOptions);
+        // return new Promise((resolve, reject) => {
+        //     Vue.set(dragDashboard, 'options', dragOptions);
+        //     resolve(d);
+        // })
+
+    }
+} as unknown as DragLayoutOptions);
+
+
+let dragDashboard = {
+    id: "drag",
+    path: "/drag",
+    title: "Drag Grid",
+    layout: DragLayout.id,
+    defaultWidgetOptions: {
+        elevation: 0,
+        flat: true,
+        outlined: true,
+    } as WidgetOptions,
+    options: dragOptions,
+    widgets: [
+        {
+            id: 'widget1',
+            component: HtmlWidget,
+            data: 'widget 1',
+            options: {
+                width: 6,
+            }
+        },
+        {
+            id: 'widget2',
+            component: HtmlWidget,
+            data: 'widget 2',
+            options: {
+                height: 2
+            }
+        },
+        {
+            id: 'widget3',
+            component: HtmlWidget,
+            data: 'widget 3',
+            options: {
+                height: 2
+            }
+        },
+        {
+            component: HtmlWidget,
+            data: 'widget 4',
+            options: {
+                height: 2
+
+            }
+        },
+        {
+            component: HtmlWidget,
+            data: 'widget 5',
+            options: {
+                x: 6,
+                y: 7,
+                width: 4,
+                height: 2,
+
+            }
+        }
+    ],
+    sidebars: {    
+        form: {
+            layout: GridLayout.id,
+            icon: 'build',
+            id: 'form',
+            options: {
+                showToolbar: false
+            },
+            widgets: [
+                {
+                    component: CsForm,
+                    data: dragOptions
+                }
+            ]
+        }
+    }
+};
+
 export const layouts: IDashboard = {
     title: "Layouts",
     icon: "dashboard",
+    options: {
+        toolbarOptions: {
+            navigation: 'tabs'
+        }
+    },
+
     dashboards: [
         {
             path: "/single",
@@ -27,7 +131,23 @@ export const layouts: IDashboard = {
                         class: 'widget-red'
                     }
                 }
-            ]
+            ],
+            sidebars: {
+                form: {
+                    layout: GridLayout.id,
+                    icon: 'home',
+                    id: 'home',
+                    options: {
+                        showToolbar: false
+                    },
+                    widgets: [
+                        {
+                            component: HtmlWidget,
+                            data: 'html widget'
+                        }
+                    ]
+                }
+            }
         },
         {
             path: "/grid",
@@ -56,7 +176,24 @@ export const layouts: IDashboard = {
                     }
                 }
 
-            ]
+            ],
+            sidebars: {
+                form: {
+                    layout: GridLayout.id,
+                    icon: 'home',
+                    id: 'home',
+                    options: {
+                        showToolbar: false
+                    },
+                    widgets: [
+                        {
+                            component: HtmlWidget,
+                            data: 'grid widget'
+                        }
+                    ]
+                }
+            }
+
         },
         {
             title: 'CSS Grids',
@@ -214,71 +351,6 @@ export const layouts: IDashboard = {
 
             ]
         },
-        {
-            id: "drag",
-            path: "/drag",
-            title: "Drag Grid",
-            layout: DragLayout.id,
-            defaultWidgetOptions: {
-                elevation: 5,
-                flat: false,
-                backgroundColor: 'blue',
-            },
-            options: {
-                DragEnabled: false
-            } as DragLayoutOptions,
-            widgets: [
-                {
-                    id: 'widget1',
-                    component: HtmlWidget,
-                    data: 'widget 1',
-                    options: {
-                        elevation: 0,
-                        width: 6,
-                        card: {
-                            title: 'test',
-                            description: 'test',
-                            backgroundImage: 'images/beach.jpg',
-                        }
-                    } as CardWidgetOptions
-                },
-                {
-                    id: 'widget2',
-                    component: HtmlWidget,
-                    data: 'widget 2',
-                    options: {
-                        height: 2
-                    }
-                },
-                {
-                    id: 'widget3',
-                    component: HtmlWidget,
-                    data: 'widget 3',
-                    options: {
-                        height: 2
-
-                    }
-                },
-                {
-                    component: HtmlWidget,
-                    data: 'widget 4',
-                    options: {
-                        height: 2
-
-                    }
-                },
-                {
-                    component: HtmlWidget,
-                    data: 'widget 5',
-                    options: {
-                        x: 6,
-                        y: 7,
-                        width: 4,
-                        height: 2,
-
-                    }
-                }
-            ]
-        }
+        dragDashboard
     ]
 }

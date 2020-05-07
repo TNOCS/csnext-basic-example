@@ -15,8 +15,6 @@
         
           <v-btn
             outlined
-            
-
             v-for="action in example.actions"
             @click="action.callback(action)"
             :icon="action.icon !== undefined"
@@ -61,6 +59,6 @@ export class Example {
 @Component({})
 export default class ExamplesList extends Vue {
   @Prop()
-  public examples: Example[] = [];
+  public examples?: Example[];
 }
 </script>

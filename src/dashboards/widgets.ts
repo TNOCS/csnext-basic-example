@@ -1,12 +1,13 @@
 import { Billboard } from '@csnext/cs-billboard';
-import { CsMarkdown } from '@csnext/cs-markdown';
-import { GridLayout, CssGrid, AppState } from "@csnext/cs-client";
+// import { CsMarkdown } from '@csnext/cs-markdown';
+import { GridLayout, CssGrid, AppState, CssGridTemplates } from "@csnext/cs-client";
 import { CssGridDashboardOptions, IMenu, IWidget } from '@csnext/cs-core';
 import { CsMap, MapOptions } from '@csnext/cs-map';
 import { CsTimeline, TimelineWidgetOptions } from '@csnext/cs-timeline';
 import { MapboxOptions } from 'mapbox-gl';
 import WidgetPlayground from './../components/widget-playground.vue';
 import WidgetToolbarPlayground from './../components/widget-toolbar-playground.vue';
+import { CsMarkdown } from '@csnext/cs-markdown';
 
 
 const widget_menus = [
@@ -14,18 +15,17 @@ const widget_menus = [
         icon: 'message',
         toolTip: 'Trigger notification',
         action: (m) => {
-            AppState.Instance.TriggerNotification({ title: 'clicked' });
+            $cs.triggerNotification({ title: 'clicked' });
         }
     },
-    {        
+    {
         icon: 'invert_colors',
         toolTip: 'Toggle dark/light mode',
-        action: (m) => {
-
-            AppState.Instance.project.theme!.dark = !AppState.Instance.project.theme!.dark;
+        action: (m) => {            
+            $cs.project.theme!.dark = !$cs.project.theme!.dark;
         }
     },
-    {        
+    {
         icon: 'filter_list',
         toolTip: 'Toggle dark/light mode',
         items: [
@@ -33,8 +33,8 @@ const widget_menus = [
                 icon: 'delete',
                 title: 'delete',
                 action: (m) => {
-                    AppState.Instance.TriggerQuestionDialog('Delete', 'are you sure', ['yes', 'no']).then(s => {
-                        AppState.Instance.TriggerNotification({ title: `Answer : ${s}` });
+                    $cs.triggerQuestionDialog('Delete', 'are you sure', ['yes', 'no']).then(s => {
+                        $cs.triggerNotification({ title: `Answer : ${s}` });
                     })
                 }
             },
@@ -51,13 +51,14 @@ export const widgets = {
             path: "/widgets/playground",
             title: "Playground",
             options: {
-                class: 'widget-playground-dashboard'
+                class: CssGridTemplates.LEFT_RIGHT
             } as CssGridDashboardOptions,
             layout: CssGrid.id,
             widgets: [
                 {
                     component: WidgetPlayground,
                     options: {
+                        area: 'left',
                         title: 'Widget Options',
                         showToolbar: false,
                         menus: widget_menus
@@ -66,6 +67,7 @@ export const widgets = {
                 {
                     component: WidgetToolbarPlayground,
                     options: {
+                        area: 'right',
                         icon: 'assessment',
                         title: 'Widget Toolbar Options',
                         showToolbar: true,
@@ -321,67 +323,6 @@ console.log(foo(5));
 
                 }
             },]
-        },
-        {
-
-            path: '/widgets/map',
-            layout: 'split-panel',
-            datasource: 'project',
-            title: 'Map & Timeline',
-            icon: 'dashboard',
-            manager: 'operation-dashboard',
-            defaultWidgetOptions: {
-                widgetBorder: 'widget-border-shadow'
-            },
-            options: {
-                closeRightSidebar: true,
-                splitpanel: {
-                    icon: 'check_circle',
-                    direction: 'vertical',
-                    elements: [
-                        {
-                            size: 80,
-                            splitpanel: {
-                                direction: 'horizontal',
-                                elements: [
-
-
-                                    { size: 100, widgetId: 'map' }
-                                ]
-                            }
-                        },
-                        { size: 20, widgetId: 'timeline' }
-                    ]
-                }
-            } as any,
-
-            widgets: [
-                {
-                    id: 'map',
-                    component: CsMap,
-                    options: {
-                        class: 'data-map-container',
-                        token: 'pk.eyJ1IjoiZGFteWxlbiIsImEiOiJjazFqN2ljNzYwMTJlM2xucGV3enJvYjE4In0.kArBU3x7YIy3DhfyQhtSGw',
-                        mbOptions: {
-                            style: 'mapbox://styles/mapbox/light-v10',
-                            center: [4.799119, 52.478137],
-                            zoom: 13
-                        } as MapboxOptions,
-                        showDraw: true,
-                        showRuler: true,
-                        showStyles: true,
-                        showGeocoder: true,
-                        showTraffic: true
-                    } as MapOptions
-                },
-                {
-                    id: 'timeline',
-
-                    component: CsTimeline,
-                    options: { showToolbar: false, showFitButton: true, toggleSmallButton: true, showGroupSelectionButton: true, logSource: 'calendar', timelineOptions: { height: '100%', editable: false, locale: 'nl' } } as TimelineWidgetOptions, datasource: 'time'
-                }
-            ]
-
         }
     ]
 };
